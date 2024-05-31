@@ -4,303 +4,87 @@
   "#class": "Account.Role",
   "permission": [
     {
-      "name": "Task:Permission:create",
+      "name": "Task:create",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:create.many",
+      "name": "Task::create.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:read",
+      "name": "Task::read",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:read.relation",
+      "name": "Task::read.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:page",
+      "name": "Task::page",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:page.relation",
+      "name": "Task::page.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:list.relation",
+      "name": "Task::list.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:property.delete",
+      "name": "Task::property.delete",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:rename",
+      "name": "Task::rename",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:import",
+      "name": "Task::import",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:export",
+      "name": "Task::export",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:count",
+      "name": "Task::count",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:count.relation",
+      "name": "Task::count.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:record",
+      "name": "Task::record",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:patch",
+      "name": "Task::patch",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:patch.many",
+      "name": "Task::patch.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:put",
+      "name": "Task::put",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:put.many",
+      "name": "Task::put.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:delete",
+      "name": "Task::delete",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:list",
+      "name": "Task::list",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task:Permission:commit",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:create",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:read",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:read.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:page",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:page.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:list.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:property.delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:rename",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:import",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:export",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:count",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:count.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:record",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:patch",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:put",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:list",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Profile:commit",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:create",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:read",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:read.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:page",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:page.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:list.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:property.delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:rename",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:import",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:export",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:count",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:count.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:record",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:patch",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:put",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:list",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:Role:commit",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:create",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:read",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:read.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:page",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:page.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:list.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:property.delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:rename",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:import",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:export",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:count",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:count.relation",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:record",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:patch",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:put",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:delete",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:list",
-      "#class": "Account.Permission"
-    },
-    {
-      "name": "Account:User:commit",
+      "name": "Task::commit",
       "#class": "Account.Permission"
     }
   ]

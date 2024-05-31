@@ -1,0 +1,83 @@
+{
+    "Node": {
+        "#class": "Task",
+        "type": "object",
+        "property": [
+            {
+                "name": "uuid",
+                "type": "uuid"
+            },
+            {
+                "name": "description",
+                "type": "string"
+            },
+            {
+                "name": "options",
+                "type": "object",
+                "property": [
+                    {
+                        "name": "priority",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "command",
+                        "type": "array"
+                    },
+                    {
+                        "name": "controller",
+                        "type": "array"
+                    },
+                    {
+                        "name": "server",
+                        "type": "dynamic",
+                        "multiple": false
+                    },
+                    {
+                        "name": "request",
+                        "type": "dynamic",
+                        "multiple": false
+                    },
+                    {
+                        "name": "flags",
+                        "type": "dynamic",
+                        "multiple": false
+                    },
+                    {
+                        "name": "options",
+                        "type": "dynamic",
+                        "multiple": false
+                    },
+                    {
+                        "name": "response",
+                        "type": "dynamic",
+                        "multiple": false
+                    },
+                    {
+                        "name": "status",
+                        "type": "string"
+                    },
+                    {
+                        "name": "not_before",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "is_executed",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "ttl",
+                        "type": "integer"
+                    }
+                ],
+                "multiple": false
+            },
+            {
+                "name": "#class",
+                "type": "string"
+            }
+        ]
+    },
+    "is.unique": [
+        "uuid"
+    ]
+}

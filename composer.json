@@ -5,7 +5,7 @@
     "keywords" : ["node", "r3m", "library", "framework", "task", "r3m.io"],
     "homepage": "https://r3m.io",
     "require" : {
-        "r3m_io/framework": "dev-main"
+        "r3m_io/framework": "*"
     },
     "minimum-stability": "dev",
     "license" : "MIT",

@@ -1,0 +1,260 @@
+{
+    "Task": {
+        "count": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "create": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "list": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "page": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "patch": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "put": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "read": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "record": {
+            "output": [
+                {
+                    "role": "ROLE_SYSTEM",
+                    "property": [
+                        "uuid",
+                        "#class",
+                        "description",
+                        "options"
+                    ],
+                    "object": {
+                        "options": {
+                            "multiple": false,
+                            "output": [
+                                "priority",
+                                "command",
+                                "controller",
+                                "server",
+                                "request",
+                                "flags",
+                                "options",
+                                "response",
+                                "status",
+                                "not_before",
+                                "is_executed",
+                                "ttl"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

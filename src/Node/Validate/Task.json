@@ -1,0 +1,46 @@
+{
+    "Task": {
+        "create": {
+            "validate": {
+                "uuid": [
+                    {
+                        "is.unique": {
+                            "class": "Task",
+                            "attribute": [
+                                "uuid"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "put": {
+            "validate": {
+                "uuid": [
+                    {
+                        "is.unique": {
+                            "class": "Task",
+                            "attribute": [
+                                "uuid"
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "patch": {
+            "validate": {
+                "uuid": [
+                    {
+                        "is.unique": {
+                            "class": "Task",
+                            "attribute": [
+                                "uuid"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

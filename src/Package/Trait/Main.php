@@ -24,5 +24,7 @@ trait Main {
     public function create($flags, $options){
         d($flags);
         d($options);
+        $object = $this->object();
+        return $object->request();
     }
 }
