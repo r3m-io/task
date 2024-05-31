@@ -25,6 +25,26 @@ trait Main {
         d($flags);
         d($options);
         $object = $this->object();
-        return $object->request();
+        $node = new Node($object);
+        if(property_exists($options, 'description')){
+            if(is_array($options->description)){
+                $node->set('description', implode(PHP_EOL, $options->description));
+            } else {
+                $node->set('description', $options->description);
+            }
+        }
+        if(property_exists($options, 'command')){
+            if(is_array($options->command)){
+                $node->set('command', $options->command);
+            } elseif(is_scalar($options->command)){
+                $node->set('command', [ $options->command ]);
+            }
+        }
+        $node->set('status', 'queue');
+
+
+
+
+        return $node->data();
     }
 }

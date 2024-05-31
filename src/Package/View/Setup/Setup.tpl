@@ -1,5 +1,5 @@
 {{R3M}}
-{{$register = Package.R3m.Io.Account:Init:register()}}
+{{$register = Package.R3m.Io.Task:Init:register()}}
 {{if(!is.empty($register))}}
-{{Package.R3m.Io.Account:Import:role.system()}}
+{{Package.R3m.Io.Task:Import:role.system()}}
 {{/if}}
