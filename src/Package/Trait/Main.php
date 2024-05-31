@@ -26,6 +26,13 @@ trait Main {
         d($options);
         $object = $this->object();
         $node = new Node($object);
+        $create = $node->create(
+            'Task',
+            $node->role_system(),
+            $options
+        );
+        ddd($create);
+
         if(property_exists($options, 'description')){
             if(is_array($options->description)){
                 $node->set('description', implode(PHP_EOL, $options->description));
@@ -33,11 +40,14 @@ trait Main {
                 $node->set('description', $options->description);
             }
         }
-        if(property_exists($options, 'command')){
-            if(is_array($options->command)){
-                $node->set('options.command', $options->command);
-            } elseif(is_scalar($options->command)){
-                $node->set('options.command', [ $options->command ]);
+        if(
+            property_exists($options, 'options') &&
+            property_exists($options->options, 'command')
+        ){
+            if(is_array($options->options->command)){
+                $node->set('options.command', $options->options->command);
+            } elseif(is_scalar($options->options->command)){
+                $node->set('options.command', [ $options->options->command ]);
             }
         }
         $node->set('options.status', 'queue');
