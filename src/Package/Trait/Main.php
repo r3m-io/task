@@ -3,6 +3,7 @@ namespace Package\R3m\Io\Task\Trait;
 
 use R3m\Io\Config;
 
+use R3m\Io\Module\Cli;
 use R3m\Io\Module\Core;
 use R3m\Io\Module\File;
 use R3m\Io\Module\Dir;
