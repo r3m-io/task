@@ -59,8 +59,8 @@ trait Main {
         $options->options->status  = 'queue';
         $options->options->priority = 100;
 
-        $username = Cli::read('input', 'username');
-        $password = Cli::read('input-hidden', 'password');
+        $username = Cli::read('input', 'username: ');
+        $password = Cli::read('input-hidden', 'password: ');
 
         d($username);
         d($password);
