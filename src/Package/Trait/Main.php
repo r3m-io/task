@@ -58,7 +58,15 @@ trait Main {
         $options->options->flags = $flags;
         $options->options->status  = 'queue';
         $options->options->priority = 100;
+
+        $username = Cli::read('input', 'username');
+        $password = Cli::read('input-hidden', 'password');
+
+        d($username);
+        d($password);
+
         ddd($options);
+
         $create = $node->create(
             'Task',
             $node->role_system(),
