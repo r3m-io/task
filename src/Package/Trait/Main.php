@@ -35,13 +35,13 @@ trait Main {
         }
         if(property_exists($options, 'command')){
             if(is_array($options->command)){
-                $node->set('command', $options->command);
+                $node->set('options.command', $options->command);
             } elseif(is_scalar($options->command)){
-                $node->set('command', [ $options->command ]);
+                $node->set('options.command', [ $options->command ]);
             }
         }
-        $node->set('status', 'queue');
-        $node->set('priority', 100);
+        $node->set('options.status', 'queue');
+        $node->set('options.priority', 100);
 
 
 
