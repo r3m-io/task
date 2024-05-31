@@ -26,18 +26,11 @@ trait Main {
         d($options);
         $object = $this->object();
         $node = new Node($object);
-        $create = $node->create(
-            'Task',
-            $node->role_system(),
-            $options
-        );
-        ddd($create);
-
         if(property_exists($options, 'description')){
             if(is_array($options->description)){
-                $node->set('description', implode(PHP_EOL, $options->description));
+                $options->description = implode(PHP_EOL, $options->description);
             } else {
-                $node->set('description', $options->description);
+                $options->description = $options->description;
             }
         }
         if(
@@ -45,13 +38,36 @@ trait Main {
             property_exists($options->options, 'command')
         ){
             if(is_array($options->options->command)){
-                $node->set('options.command', $options->options->command);
+                //nothing
             } elseif(is_scalar($options->options->command)){
-                $node->set('options.command', [ $options->options->command ]);
+                $options->options->command = [ $options->options->command ];
             }
         }
-        $node->set('options.status', 'queue');
-        $node->set('options.priority', 100);
+        if(
+            property_exists($options, 'options') &&
+            property_exists($options->options, 'controller')
+        ){
+            if(is_array($options->options->controller)){
+                //nothing
+            } elseif(is_scalar($options->options->controller)){
+                $options->options->controller = [ $options->options->controller ];
+            }
+        }
+        $options->options->request = $object->request();
+        $options->options->server = $object->server();
+        $options->options->flags = $flags;
+        $options->options->status  = 'queue';
+        $options->options->priority = 100;
+        ddd($options);
+        $create = $node->create(
+            'Task',
+            $node->role_system(),
+            $options
+        );
+        ddd($create);
+
+        
+        
 
 
 
