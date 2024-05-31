@@ -41,7 +41,7 @@ trait Main {
             }
         }
         $node->set('status', 'queue');
-
+        $node->set('priority', 100);
 
 
 
