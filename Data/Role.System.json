@@ -8,83 +8,83 @@
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::create.many",
+      "name": "Task:create.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::read",
+      "name": "Task:read",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::read.relation",
+      "name": "Task:read.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::page",
+      "name": "Task:page",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::page.relation",
+      "name": "Task:page.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::list.relation",
+      "name": "Task:list.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::property.delete",
+      "name": "Task:property.delete",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::rename",
+      "name": "Task:rename",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::import",
+      "name": "Task:import",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::export",
+      "name": "Task:export",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::count",
+      "name": "Task:count",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::count.relation",
+      "name": "Task:count.relation",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::record",
+      "name": "Task:record",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::patch",
+      "name": "Task:patch",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::patch.many",
+      "name": "Task:patch.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::put",
+      "name": "Task:put",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::put.many",
+      "name": "Task:put.many",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::delete",
+      "name": "Task:delete",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::list",
+      "name": "Task:list",
       "#class": "Account.Permission"
     },
     {
-      "name": "Task::commit",
+      "name": "Task:commit",
       "#class": "Account.Permission"
     }
   ]
