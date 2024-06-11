@@ -19,7 +19,7 @@ trait Main {
      */
     public function create($flags, $options){
         d($flags);
-        ddd($options);
+        d($options);
         $object = $this->object();
         $node = new Node($object);
 
