@@ -67,7 +67,7 @@ trait Main {
         d($username);
         d($password);
 
-        ddd($options);
+        d($options);
 
         $create = $node->create(
             'Task',
