@@ -59,7 +59,7 @@ trait Main {
             $options->options->status  = 'queue';
             $options->options->priority = 100;
         } else {
-            throw new Eception('options not found (controller / command)');
+            throw new Exception('options not found (controller / command)');
         }
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
