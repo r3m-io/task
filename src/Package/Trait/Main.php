@@ -19,9 +19,12 @@ trait Main {
      */
     public function create($flags, $options){
         d($flags);
-        d($options);
+        ddd($options);
         $object = $this->object();
         $node = new Node($object);
+
+
+
         if(property_exists($options, 'description')){
             if(is_array($options->description)){
                 $options->description = implode(PHP_EOL, $options->description);
@@ -49,12 +52,15 @@ trait Main {
                 $options->options->controller = [ $options->options->controller ];
             }
         }
-        $options->options->request = $object->request();
-        $options->options->server = $object->server();
-        $options->options->flags = $flags;
-        $options->options->status  = 'queue';
-        $options->options->priority = 100;
-
+        if(property_exists($options, 'options')){
+            $options->options->request = $object->request();
+            $options->options->server = $object->server();
+            $options->options->flags = $flags;
+            $options->options->status  = 'queue';
+            $options->options->priority = 100;
+        } else {
+            throw new Eception('options not found (controller / command)');
+        }
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
 
