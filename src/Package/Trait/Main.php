@@ -103,11 +103,15 @@ trait Main {
             }
             $url_login = $url[$index_read] . '/login';
 
-            $route = $node->list('System.Route', $node->role_system(), [
-                'filter' => [
-                    'host' => strtolower($url[$index_read]->name)
+            $route = $node->list(
+                'System.Route',
+                $node->role_system(),
+                [
+                    'filter' => [
+                        'host' => strtolower($url[$index_read]->name)
+                    ]
                 ]
-            ]);
+            );
             ddd($route);
 
         }
