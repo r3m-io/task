@@ -101,7 +101,7 @@ trait Main {
                     break;
                 }
             }
-            $url_login = $url[$index_read] . '/login';
+//            $url_login = $url[$index_read] . '/login';
 
             $route = $node->list(
                 'System.Route',
