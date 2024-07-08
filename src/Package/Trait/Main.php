@@ -92,7 +92,13 @@ trait Main {
                 echo '[' . $index . '] ' . $url_environment  . PHP_EOL;
             }
             while(true){
-                $index_read = (int) Cli::read('input', 'Host number: ');
+                $index_read = Cli::read('input', 'Host number: ');
+                if(strtolower($index_read) === 'add'){
+                    ddd('add');
+                    break;
+                } else {
+                    $index_read = (int) $index_read;
+                }
                 if(
                     $index_read > 0 &&
                     $index_read <= $hosts['count']
