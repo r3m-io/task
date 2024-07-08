@@ -142,7 +142,7 @@ trait Main {
                         ]
                     );
                     $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
-                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . $namespace;
+                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace);
 
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
@@ -210,7 +210,7 @@ trait Main {
                     ]
                 );
                 $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
-                $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . $namespace;
+                $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace);
                 Core::execute($object, $command, $output, $notification);
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
