@@ -142,7 +142,15 @@ trait Main {
                         ]
                     );
                     $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
-                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace);
+                    $dir_domain = $object->config('project.dir.domain') .
+                        $url[$index_read]->name .
+                        $object->config('ds')
+                    ;
+                    $dir_domain_controller = $dir_domain .
+                        'Controller' .
+                        $object->config('ds')
+                    ;
+                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) . ' -dir=' . escapeshellarg($dir_domain_controller);
 
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
