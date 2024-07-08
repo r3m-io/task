@@ -141,7 +141,7 @@ trait Main {
                             ]
                         ]
                     );
-                    $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
+                    $namespace = 'Domain' . '\\' . str_replace('.', '_', $url[$index_read]->name) . '\\' . 'Controller';
                     $dir_domain = $object->config('project.dir.domain') .
                         $url[$index_read]->name .
                         $object->config('ds')
@@ -218,7 +218,7 @@ trait Main {
                         ]
                     ]
                 );
-                $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
+                $namespace = 'Domain' . '\\' . str_replace('.', '_', $url[$index_read]->name) . '\\' . 'Controller';
                 $dir_domain = $object->config('project.dir.domain') .
                     $url[$index_read]->name .
                     $object->config('ds')
