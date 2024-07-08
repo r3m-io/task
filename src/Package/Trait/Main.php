@@ -88,7 +88,7 @@ trait Main {
             foreach($hosts['list'] as $nr => $host){
                 $index = $nr + 1;
                 ddd($host);
-                $url[$index] = $host->url->production;
+                $url[$index] = $host;
                 $url_environment = $host->url->{$object->config('framework.environment')};
                 echo '[' . $index . '] ' . $url[$index] . PHP_EOL;
             }
@@ -105,13 +105,10 @@ trait Main {
 
             $route = $node->list('System.Route', $node->role_system(), [
                 'filter' => [
-                    'host' => [
-                        'operator' => '===',
-                        'value' => $url[$index_read]
-                    ]
+                    'host' => strtolower($url[$index_read]->name)
                 ]
             ]);
-
+            ddd($route);
 
         }
         ddd($hosts);
