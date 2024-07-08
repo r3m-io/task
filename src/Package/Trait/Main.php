@@ -101,8 +101,8 @@ trait Main {
             }
             $url_login = $url[$index_read] . '/login';
         }
-
-        d($object->route('user-login'));
+        $route = $object->route();
+        ddd($route);
         ddd($hosts);
 
         $options->options->server->authorization = 'Bearer ' . $token;
