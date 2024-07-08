@@ -5,6 +5,7 @@ use R3m\Io\Config;
 
 use R3m\Io\Module\Cli;
 
+use R3m\Io\Module\Core;
 use R3m\Io\Node\Model\Node;
 
 use Exception;
@@ -140,6 +141,82 @@ trait Main {
                             ]
                         ]
                     );
+                    $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller' . '\\' . 'User';
+                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . $namespace;
+
+                    Core::execute($object, $command, $output, $notification);
+                    if(!empty($output)){
+                        echo rtrim($output, PHP_EOL) . PHP_EOL;
+                    }
+                    if(!empty($notification)){
+                        echo rtrim($notification, PHP_EOL) . PHP_EOL;
+                    }
+
+                    /*
+                    $dir_domain = $object->config('project.dir.domain') .
+                        $url[$index_read]->name .
+                        $object->config('ds')
+                    ;
+                    $dir_domain_controller = $dir_domain .
+                        'Controller' .
+                        $object->config('ds')
+                    ;
+                    $dir_template = $object->config('project.dir.package') .
+                        'R3m' .
+                        $object->config('ds') .
+                        'Io' .
+                        $object->config('ds') .
+                        'Account' .
+                        $object->config('ds') .
+                        'Data' .
+                        $object->config('ds') .
+                        'Php' .
+                        $object->config('ds')
+                    ;
+                    $url_template = $dir_template .
+                        'User' .
+                        $object->config('extension.php') .
+                        $object->config('extension.tpl')
+                    ;
+                    if(!Dir::exist($dir_domain_controller)){
+                        Dir::create($dir_domain_controller, Dir::CHMOD);
+                    }
+                    if(File::exist($url_template)){
+                        $content = File::read($url_template);
+                        $url_controller = $dir_domain_controller . 'User.php';
+                        File::write($url_controller, $content);
+                    }
+*/
+                    
+                    //file from r3m_io/account needs to go to /Application/Domain/{name}/Controller/User.php
+                }
+            } else {
+                $controller = 'Domain' . ':' . $url[$index]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
+                $route = $node->patch(
+                    'System.Route',
+                    $node->role_system(),
+                    [
+                        "name" => "user-login",
+                        "host" => strtolower($url[$index_read]->name),
+                        "controller" =>  $controller,
+                        "path" =>  "/User/Login/",
+                        "priority" => 2003,
+                        "method" => [
+                            "POST"
+                        ],
+                        "request" => ( object ) [
+                            "language" => "en"
+                        ]
+                    ]
+                );
+                $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
+                $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . $namespace;
+                Core::execute($object, $command, $output, $notification);
+                if(!empty($output)){
+                    echo rtrim($output, PHP_EOL) . PHP_EOL;
+                }
+                if(!empty($notification)){
+                    echo rtrim($notification, PHP_EOL) . PHP_EOL;
                 }
             }
             ddd($route);
