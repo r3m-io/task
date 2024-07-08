@@ -141,7 +141,7 @@ trait Main {
                             ]
                         ]
                     );
-                    $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller' . '\\' . 'User';
+                    $namespace = 'Domain' . '\\' . $url[$index_read]->name . '\\' . 'Controller';
                     $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . $namespace;
 
                     Core::execute($object, $command, $output, $notification);
