@@ -150,7 +150,9 @@ trait Main {
                         'Controller' .
                         $object->config('ds')
                     ;
-                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) . ' -dir=' . escapeshellarg($dir_domain_controller);
+                    $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) .
+                        ' -dir=' . escapeshellarg($dir_domain_controller)
+                    ;
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
                         echo rtrim($output, PHP_EOL) . PHP_EOL;
@@ -225,7 +227,9 @@ trait Main {
                     'Controller' .
                     $object->config('ds')
                 ;
-                $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) . ' -dir=' . escapeshellarg($dir_domain_controller);
+                $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) .
+                    ' -dir=' . escapeshellarg($dir_domain_controller)
+                ;
                 Core::execute($object, $command, $output, $notification);
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
