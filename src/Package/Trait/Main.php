@@ -118,6 +118,30 @@ trait Main {
                     ]
                 ]
             );
+            if(!$route){
+                echo 'No route "user-login" found !' . PHP_EOL;
+                $add = Cli::read('input', 'Would you like to add user-login (y/n): ');
+                if(strtolower(substr($add, 0, 1)) === 'y'){
+                    $controller = 'Domain' . ':' . $url[$index]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
+                    $route = $node->create(
+                        'System.Route',
+                        $node->role_system(),
+                        [
+                            "name" => "user-login",
+                            "host" => strtolower($url[$index_read]->name),
+                            "controller" =>  $controller,
+                            "path" =>  "/User/Login/",
+                            "priority" => 2003,
+                            "method" => [
+                                "POST"
+                            ],
+                            "request" => ( object ) [
+                                "language" => "en"
+                            ]
+                        ]
+                    );
+                }
+            }
             ddd($route);
         }
         ddd($hosts);
