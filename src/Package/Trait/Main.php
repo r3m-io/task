@@ -87,7 +87,9 @@ trait Main {
             $url = [];
             foreach($hosts['list'] as $nr => $host){
                 $index = $nr + 1;
-                $url[$index] = $host->url->{$object->config('framework.environment')};
+                ddd($host);
+                $url[$index] = $host->url->production;
+                $url_environment = $host->url->{$object->config('framework.environment')};
                 echo '[' . $index . '] ' . $url[$index] . PHP_EOL;
             }
             while(true){
@@ -100,9 +102,18 @@ trait Main {
                 }
             }
             $url_login = $url[$index_read] . '/login';
+
+            $route = $node->list('System.Route', $node->role_system(), [
+                'filter' => [
+                    'host' => [
+                        'operator' => '===',
+                        'value' => $url[$index_read]
+                    ]
+                ]
+            ]);
+
+
         }
-        $route = $object->route();
-        ddd($route);
         ddd($hosts);
 
         $options->options->server->authorization = 'Bearer ' . $token;
