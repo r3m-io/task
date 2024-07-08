@@ -1,6 +1,8 @@
 <?php
 namespace Package\R3m\Io\Task\Trait;
 
+use R3m\Io\Config;
+
 use R3m\Io\Module\Cli;
 
 use R3m\Io\Node\Model\Node;
@@ -75,6 +77,20 @@ trait Main {
 
             ]
         );
+
+        if(
+            array_key_exists('count', $hosts) &&
+            array_key_exists('list', $hosts) &&
+            $hosts['count'] > 0
+        ){
+            echo 'Select host to connect to: ' . PHP_EOL;
+            foreach($hosts['list'] as $nr => $host){
+                $index = $nr + 1;
+                $url = $host->url->{$object->config('framework.environment')};
+                echo '[' . $index . '] ' . $url . PHP_EOL;
+            }
+        }
+
 
         ddd($hosts);
 
