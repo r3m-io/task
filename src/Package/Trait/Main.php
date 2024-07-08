@@ -64,6 +64,23 @@ trait Main {
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
 
+        //url of backend to login
+
+        //first get all hosts
+
+        $hosts = $node->list(
+            'System.Host',
+            $node->role_system(),
+            [
+
+            ]
+        );
+
+        ddd($hosts);
+
+        $options->options->server->authorization = 'Bearer ' . $token;
+
+
         d($username);
         d($password);
 
