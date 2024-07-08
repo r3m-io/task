@@ -87,10 +87,9 @@ trait Main {
             $url = [];
             foreach($hosts['list'] as $nr => $host){
                 $index = $nr + 1;
-                ddd($host);
                 $url[$index] = $host;
                 $url_environment = $host->url->{$object->config('framework.environment')};
-                echo '[' . $index . '] ' . $url[$index] . PHP_EOL;
+                echo '[' . $index . '] ' . $url_environment  . PHP_EOL;
             }
             while(true){
                 $index_read = (int) Cli::read('input', 'Host number: ');
