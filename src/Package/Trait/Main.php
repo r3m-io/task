@@ -84,14 +84,25 @@ trait Main {
             $hosts['count'] > 0
         ){
             echo 'Select host to connect to: ' . PHP_EOL;
+            $url = [];
             foreach($hosts['list'] as $nr => $host){
                 $index = $nr + 1;
-                $url = $host->url->{$object->config('framework.environment')};
-                echo '[' . $index . '] ' . $url . PHP_EOL;
+                $url[$index] = $host->url->{$object->config('framework.environment')};
+                echo '[' . $index . '] ' . $url[$index] . PHP_EOL;
             }
+            while(true){
+                $index_read = (int) Cli::read('input', 'Host number: ');
+                if(
+                    $index_read > 0 &&
+                    $index_read <= $hosts['count']
+                ){
+                    break;
+                }
+            }
+            $url_login = $url[$index_read] . '/login';
         }
 
-
+        d($object->route('user-login'));
         ddd($hosts);
 
         $options->options->server->authorization = 'Bearer ' . $token;
