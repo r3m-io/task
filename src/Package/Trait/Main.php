@@ -233,16 +233,12 @@ trait Main {
                 ;
                 d($command);
                 Core::execute($object, $command, $output, $notification);
-                d($output);
-                d($notification);
-                /*
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
                 }
                 if(!empty($notification)){
                     echo rtrim($notification, PHP_EOL) . PHP_EOL;
                 }
-                */
             }
             ddd($route);
         }
