@@ -151,8 +151,7 @@ trait Main {
                         $object->config('ds')
                     ;
                     $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) .
-                        ' -dir=' . escapeshellarg($dir_domain_controller) .
-                        ' -patch'
+                        ' -dir=' . escapeshellarg($dir_domain_controller)
                     ;
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
@@ -229,7 +228,8 @@ trait Main {
                     $object->config('ds')
                 ;
                 $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) .
-                    ' -dir=' . escapeshellarg($dir_domain_controller)
+                    ' -dir=' . escapeshellarg($dir_domain_controller) .
+                    ' -patch'
                 ;
                 Core::execute($object, $command, $output, $notification);
                 if(!empty($output)){
