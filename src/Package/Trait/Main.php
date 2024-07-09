@@ -232,11 +232,9 @@ trait Main {
                     ' -patch'
                 ;
                 d($command);
-                exec($command, $output, $code);
-//                Core::execute($object, $command, $output, $notification);
+                Core::execute($object, $command, $output, $notification);
                 d($output);
-                d($code);
-//                d($notification);
+                d($notification);
                 /*
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
