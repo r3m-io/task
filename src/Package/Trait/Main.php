@@ -231,7 +231,10 @@ trait Main {
                     ' -dir=' . escapeshellarg($dir_domain_controller) .
                     ' -patch'
                 ;
+                d($command);
                 Core::execute($object, $command, $output, $notification);
+                d($output);
+                d($notification);
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
                 }
