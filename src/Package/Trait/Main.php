@@ -205,7 +205,7 @@ trait Main {
                     'System.Route',
                     $node->role_system(),
                     [
-                        'uuid' => $route['node']->uuid
+                        'uuid' => $route['node']->uuid,
                         "name" => "user-login",
                         "host" => strtolower($url[$index_read]->name),
                         "controller" =>  $controller,
