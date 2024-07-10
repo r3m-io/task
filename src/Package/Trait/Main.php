@@ -157,10 +157,11 @@ trait Main {
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
                         echo rtrim($output, PHP_EOL) . PHP_EOL;
-                    } else {
-                        echo PHP_EOL;
                     }
                     echo ob_get_clean();
+                    if(empty($output)){
+                        echo PHP_EOL;
+                    }
                     if(!empty($notification)){
                         echo rtrim($notification, PHP_EOL) . PHP_EOL;
                     }
