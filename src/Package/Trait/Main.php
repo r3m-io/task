@@ -158,9 +158,9 @@ trait Main {
                     if(!empty($output)){
                         echo rtrim($output, PHP_EOL) . PHP_EOL;
                     }
-                    echo ob_get_clean();
-                    if(empty($output)){
-                        echo PHP_EOL;
+                    $ob = ob_get_clean();
+                    if(empty($output) && !empty($ob)){
+                        echo rtrim($ob, PHP_EOL) . PHP_EOL;
                     }
                     if(!empty($notification)){
                         echo rtrim($notification, PHP_EOL) . PHP_EOL;
