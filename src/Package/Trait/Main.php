@@ -243,7 +243,7 @@ trait Main {
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
                 }
                 $ob = ob_get_clean();
-                if(empty($output) && !empty($ob)){
+                if(!empty($ob)){
                     echo rtrim($ob, PHP_EOL) . PHP_EOL;
                 }
                 if(!empty($notification)){
