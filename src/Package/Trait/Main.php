@@ -237,17 +237,19 @@ trait Main {
                     ' -dir=' . escapeshellarg($dir_domain_controller) .
                     ' -patch'
                 ;
-                ob_start();
+                $mode = $object->config('core.execute.mode');
+                $object->config('core.execute.mode', 'stream');
                 Core::execute($object, $command, $output, $notification);
                 if(!empty($output)){
                     echo rtrim($output, PHP_EOL) . PHP_EOL;
                 }
-                $ob = ob_get_clean();
-                if(!empty($ob)){
-                    echo rtrim($ob, PHP_EOL) . PHP_EOL;
-                }
                 if(!empty($notification)){
                     echo rtrim($notification, PHP_EOL) . PHP_EOL;
+                }
+                if($mode){
+                    $object->config('core.execute.mode', $mode);
+                } else {
+                    $object->config('delete', 'core.execute.mode');
                 }
             }
             ddd($route);
