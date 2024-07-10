@@ -64,8 +64,7 @@ trait Main {
         } else {
             throw new Exception('options not found (controller / command)');
         }
-        $username = Cli::read('input', 'username: ');
-        $password = Cli::read('input-hidden', 'password: ');
+
 
         //url of backend to login
 
@@ -252,8 +251,11 @@ trait Main {
                     $object->config('delete', 'core.execute.mode');
                 }
             }
-            ddd($route);
+
         }
+        $username = Cli::read('input', 'username: ');
+        $password = Cli::read('input-hidden', 'password: ');
+
         ddd($hosts);
 
         $options->options->server->authorization = 'Bearer ' . $token;
