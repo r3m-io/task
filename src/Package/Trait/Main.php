@@ -153,10 +153,14 @@ trait Main {
                     $command = Core::binary($object) . ' r3m_io/account create user login -namespace=' . escapeshellarg($namespace) .
                         ' -dir=' . escapeshellarg($dir_domain_controller)
                     ;
+                    ob_start();
                     Core::execute($object, $command, $output, $notification);
                     if(!empty($output)){
                         echo rtrim($output, PHP_EOL) . PHP_EOL;
+                    } else {
+                        echo PHP_EOL;
                     }
+                    echo ob_get_clean();
                     if(!empty($notification)){
                         echo rtrim($notification, PHP_EOL) . PHP_EOL;
                     }
