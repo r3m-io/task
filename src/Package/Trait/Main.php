@@ -21,8 +21,8 @@ trait Main {
      * @throws Exception
      */
     public function create($flags, $options){
-        d($flags);
-        d($options);
+//        d($flags);
+//        d($options);
         $object = $this->object();
         $node = new Node($object);
 
