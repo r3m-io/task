@@ -253,6 +253,7 @@ trait Main {
             }
 
         }
+        return;
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
 
