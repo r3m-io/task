@@ -190,7 +190,6 @@ trait Main {
                             ]
                         ],
                     ]);
-                    ddd($route);
                     /*
                     $route = $node->create(
                         'System.Route',
@@ -278,25 +277,6 @@ trait Main {
                 }
             }
             elseif($index_read) {
-                $controller = 'Domain' . ':' . $url[$index_read]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
-                $route = $node->patch(
-                    'System.Route',
-                    $node->role_system(),
-                    [
-                        'uuid' => $route['node']->uuid,
-                        "name" => "user-login",
-                        "host" => strtolower($url[$index_read]->name),
-                        "controller" =>  $controller,
-                        "path" =>  "/User/Login/",
-                        "priority" => 2003,
-                        "method" => [
-                            "POST"
-                        ],
-                        "request" => ( object ) [
-                            "language" => "en"
-                        ]
-                    ]
-                );
                 $namespace = 'Domain' . '\\' . str_replace('.', '_', $url[$index_read]->name) . '\\' . 'Controller';
                 $dir_domain = $object->config('project.dir.domain') .
                     $url[$index_read]->name .
