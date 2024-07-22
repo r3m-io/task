@@ -119,6 +119,17 @@ trait Main {
                     ]
                 ]
             );
+            if($route){
+                $route = $node->delete(
+                    'System.Route',
+                    $node->role_system(),
+                    [
+                        'uuid' => $route['node']->uuid
+                    ]
+                );
+            }
+
+
             if(!$route && $index_read){
                 echo 'No route "user-login" found !' . PHP_EOL;
                 $add = Cli::read('input', 'Would you like to add user-login (y/n): ');
@@ -130,19 +141,75 @@ trait Main {
                         ':' .
                         'Controller' .
                         ':' .
-                        'User' .
-                        ':' .
-                        'user' .
+                        'User'
+                    ;
+                    $function = 'user' .
                         '.' .
                         'login'
                     ;
+                    $route = $node->create_many('System.route', $node->role_system(), [
+                        (object) [
+                            "name" => "user-login",
+                            "host" => strtolower($url[$index_read]->name),
+                            "controller" =>  $controller . ':' . 'user.login',
+                            "path" =>  "/User/Login/",
+                            "priority" => 2003,
+                            "method" => [
+                                "POST"
+                            ],
+                            "request" => ( object ) [
+                                "language" => "en"
+                            ]
+                        ],
+                        (object) [
+                            "name" => "user-current",
+                            "host" => strtolower($url[$index_read]->name),
+                            "controller" =>  $controller . ':' . 'user.current',
+                            "path" =>  "/User/Current/",
+                            "priority" => 2003,
+                            "method" => [
+                                "POST"
+                            ],
+                            "request" => ( object ) [
+                                "language" => "en"
+                            ]
+                        ],
+                        (object) [
+                            "name" => "user-token",
+                            "host" => strtolower($url[$index_read]->name),
+                            "controller" =>  $controller . ':' . 'user.token',
+                            "path" =>  "/User/Token/",
+                            "priority" => 2003,
+                            "method" => [
+                                "POST"
+                            ],
+                            "request" => ( object ) [
+                                "language" => "en"
+                            ]
+                        ],
+                        (object) [
+                            "name" => "user-refresh-token",
+                            "host" => strtolower($url[$index_read]->name),
+                            "controller" =>  $controller . ':' . 'user.refresh.token',
+                            "path" =>  "/User/Refresh/Token/",
+                            "priority" => 2003,
+                            "method" => [
+                                "POST"
+                            ],
+                            "request" => ( object ) [
+                                "language" => "en"
+                            ]
+                        ],
+                    ]);
+                    ddd($route);
+                    /*
                     $route = $node->create(
                         'System.Route',
                         $node->role_system(),
                         [
                             "name" => "user-login",
                             "host" => strtolower($url[$index_read]->name),
-                            "controller" =>  $controller,
+                            "controller" =>  $controller . ':' . $function,
                             "path" =>  "/User/Login/",
                             "priority" => 2003,
                             "method" => [
@@ -153,6 +220,10 @@ trait Main {
                             ]
                         ]
                     );
+                    */
+
+
+
                     $namespace = 'Domain' . '\\' . str_replace('.', '_', $url[$index_read]->name) . '\\' . 'Controller';
                     $dir_domain = $object->config('project.dir.domain') .
                         $url[$index_read]->name .
