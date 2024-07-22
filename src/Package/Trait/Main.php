@@ -119,17 +119,6 @@ trait Main {
                     ]
                 ]
             );
-            if($route){
-                $route = $node->delete(
-                    'System.Route',
-                    $node->role_system(),
-                    [
-                        'uuid' => $route['node']->uuid
-                    ]
-                );
-            }
-
-
             if(!$route && $index_read){
                 echo 'No route "user-login" found !' . PHP_EOL;
                 $add = Cli::read('input', 'Would you like to add user-login (y/n): ');
@@ -287,8 +276,9 @@ trait Main {
                     
                     //file from r3m_io/account needs to go to /Application/Domain/{name}/Controller/User.php
                 }
-            } else {
-                $controller = 'Domain' . ':' . $url[$index]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
+            }
+            elseif($index_read) {
+                $controller = 'Domain' . ':' . $url[$index_read]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
                 $route = $node->patch(
                     'System.Route',
                     $node->role_system(),
