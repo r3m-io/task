@@ -119,16 +119,6 @@ trait Main {
                     ]
                 ]
             );
-            if($route){
-                $node->delete(
-                    'System.Route',
-                    $node->role_system(),
-                    [
-                        'uuid' => $route['node']->uuid
-                    ]
-                );
-                $route = false;
-            }
             if(!$route && $index_read){
                 echo 'No route "user-login" found !' . PHP_EOL;
                 $add = Cli::read('input', 'Would you like to add user-login (y/n): ');
