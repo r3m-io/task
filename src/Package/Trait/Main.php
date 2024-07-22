@@ -77,7 +77,8 @@ trait Main {
 
             ]
         );
-
+        $index = false;
+        $index_read = false;
         if(
             array_key_exists('count', $hosts) &&
             array_key_exists('list', $hosts) &&
@@ -118,11 +119,24 @@ trait Main {
                     ]
                 ]
             );
-            if(!$route){
+            ddd($route);
+            if(!$route && $index_read){
                 echo 'No route "user-login" found !' . PHP_EOL;
                 $add = Cli::read('input', 'Would you like to add user-login (y/n): ');
                 if(strtolower(substr($add, 0, 1)) === 'y'){
-                    $controller = 'Domain' . ':' . $url[$index]->name . ':' . 'Controller' . ':' . 'User' . ':' . 'login';
+                    $controller =
+                        'Domain' .
+                        ':' .
+                        $url[$index_read]->name .
+                        ':' .
+                        'Controller' .
+                        ':' .
+                        'User' .
+                        ':' .
+                        'user' .
+                        '.' .
+                        'login'
+                    ;
                     $route = $node->create(
                         'System.Route',
                         $node->role_system(),
