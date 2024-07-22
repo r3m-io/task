@@ -164,19 +164,6 @@ trait Main {
                             ]
                         ],
                         (object) [
-                            "name" => "user-token",
-                            "host" => strtolower($url[$index_read]->name),
-                            "controller" =>  $controller . ':' . 'user.token',
-                            "path" =>  "/User/Token/",
-                            "priority" => 2003,
-                            "method" => [
-                                "POST"
-                            ],
-                            "request" => ( object ) [
-                                "language" => "en"
-                            ]
-                        ],
-                        (object) [
                             "name" => "user-refresh-token",
                             "host" => strtolower($url[$index_read]->name),
                             "controller" =>  $controller . ':' . 'user.refresh.token',
