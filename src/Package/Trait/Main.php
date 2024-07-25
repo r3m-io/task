@@ -266,11 +266,10 @@ trait Main {
                     $object->config('delete', 'core.execute.mode');
                 }
             }
-
         } else {
             throw new Exception('No hosts found !' . PHP_EOL);
         }
-        $username = Cli::read('input', 'username: ');
+        $username = Cli::read('input', 'email: ');
         $password = Cli::read('input-hidden', 'password: ');
 
 
@@ -287,7 +286,7 @@ trait Main {
 
         d($route);
 
-        ddd($hosts);
+        ddd($url[$index_read]);
 
         $options->options->server->authorization = 'Bearer ' . $token;
 
