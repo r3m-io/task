@@ -273,6 +273,20 @@ trait Main {
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
 
+
+        $route = $node->record(
+            'System.Route',
+            $node->role_system(),
+            [
+                'filter' => [
+                    'host' => strtolower($url[$index_read]->name),
+                    'name' => 'user-login'
+                ]
+            ]
+        );
+
+        d($route);
+
         ddd($hosts);
 
         $options->options->server->authorization = 'Bearer ' . $token;
