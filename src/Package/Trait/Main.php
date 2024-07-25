@@ -307,7 +307,7 @@ trait Main {
 
                     $statusCode = $response->getStatusCode();
                     $body = $response->getBody()->getContents();
-
+                    d($statusCode);
                     ddd($body);
 
                     // Now you can access your data from the $json array.
@@ -327,13 +327,9 @@ trait Main {
 
 
         }
+//        d($route);
 
-
-
-
-        d($route);
-
-        ddd($url[$index_read]);
+//        ddd($url[$index_read]);
 
         $options->options->server->authorization = 'Bearer ' . $token;
 
