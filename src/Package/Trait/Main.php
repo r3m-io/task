@@ -311,13 +311,14 @@ trait Main {
                         'timeout'  => 10.0,
                     ]);
                 }
-
                 $response = $client->request(
                     $login_method,
                     $login_url,
                     [
-                        'email' => $email,
-                        'password' => $password
+                        'form_params' => [
+                            'email' => $email,
+                            'password' => $password
+                        ]
                     ]
                 );
                 $statusCode = $response->getStatusCode();
