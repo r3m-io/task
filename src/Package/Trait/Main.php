@@ -295,6 +295,7 @@ trait Main {
                 property_exists($url[$index_read]->url, $object->config('framework.environment'))
             ){
                 $login_url = $url[$index_read]->url->{$object->config('framework.environment')} . $route['node']->path;
+                ddd($login_url);
                 $login_method = 'POST';
                 $client = new Client([
                     'timeout'  => 10.0,
