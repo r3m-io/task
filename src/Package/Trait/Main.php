@@ -267,6 +267,8 @@ trait Main {
                 }
             }
 
+        } else {
+            throw new Exception('No hosts found !' . PHP_EOL);
         }
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
