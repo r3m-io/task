@@ -132,10 +132,6 @@ trait Main {
                         ':' .
                         'User'
                     ;
-                    $function = 'user' .
-                        '.' .
-                        'login'
-                    ;
                     $route = $node->create_many('System.route', $node->role_system(), [
                         (object) [
                             "name" => "user-login",
@@ -177,28 +173,6 @@ trait Main {
                             ]
                         ],
                     ]);
-                    /*
-                    $route = $node->create(
-                        'System.Route',
-                        $node->role_system(),
-                        [
-                            "name" => "user-login",
-                            "host" => strtolower($url[$index_read]->name),
-                            "controller" =>  $controller . ':' . $function,
-                            "path" =>  "/User/Login/",
-                            "priority" => 2003,
-                            "method" => [
-                                "POST"
-                            ],
-                            "request" => ( object ) [
-                                "language" => "en"
-                            ]
-                        ]
-                    );
-                    */
-
-
-
                     $namespace = 'Domain' . '\\' . str_replace('.', '_', $url[$index_read]->name) . '\\' . 'Controller';
                     $dir_domain = $object->config('project.dir.domain') .
                         $url[$index_read]->name .
@@ -208,7 +182,7 @@ trait Main {
                         'Controller' .
                         $object->config('ds')
                     ;
-                    $command = Core::binary($object) . ' r3m_io/account create user -namespace=' . escapeshellarg($namespace) .
+                    $command = Core::binary($object) . ' r3m_io/account setup user -namespace=' . escapeshellarg($namespace) .
                         ' -dir=' . escapeshellarg($dir_domain_controller)
                     ;
                     ob_start();
@@ -273,7 +247,7 @@ trait Main {
                     'Controller' .
                     $object->config('ds')
                 ;
-                $command = Core::binary($object) . ' r3m_io/account create user -namespace=' . escapeshellarg($namespace) .
+                $command = Core::binary($object) . ' r3m_io/account setup user -namespace=' . escapeshellarg($namespace) .
                     ' -dir=' . escapeshellarg($dir_domain_controller) .
                     ' -patch'
                 ;
@@ -294,7 +268,6 @@ trait Main {
             }
 
         }
-        return;
         $username = Cli::read('input', 'username: ');
         $password = Cli::read('input-hidden', 'password: ');
 
