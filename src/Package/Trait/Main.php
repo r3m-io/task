@@ -300,14 +300,26 @@ trait Main {
                 }
                 $login_url = $url[$index_read]->url->{$object->config('framework.environment')} . $route['node']->path;
                 $login_method = 'POST';
-                $client = new Client([
-                    'timeout'  => 10.0,
-                ]);
-                $response = $client->request('POST', $login_url, [
-                    'email' => $email,
-                    'password' => $password
-                ]);
+                if($object->config('framework.environment') === Config::MODE_DEVELOPMENT){
+                    $client = new Client([
+                        'timeout'  => 10.0,
+                        'verify' => false
+                    ]);
 
+                } else {
+                    $client = new Client([
+                        'timeout'  => 10.0,
+                    ]);
+                }
+
+                $response = $client->request(
+                    $login_method,
+                    $login_url,
+                    [
+                        'email' => $email,
+                        'password' => $password
+                    ]
+                );
                 $statusCode = $response->getStatusCode();
                 $body = $response->getBody()->getContents();
                 d($statusCode);
