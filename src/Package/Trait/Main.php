@@ -294,8 +294,11 @@ trait Main {
                 property_exists($url[$index_read], 'url') &&
                 property_exists($url[$index_read]->url, $object->config('framework.environment'))
             ){
+                $path = $route['node']->path;
+                if(substr($path, 0, 1) === $object->config('ds')){
+                    $path = substr($path, 1);
+                }
                 $login_url = $url[$index_read]->url->{$object->config('framework.environment')} . $route['node']->path;
-                ddd($login_url);
                 $login_method = 'POST';
                 $client = new Client([
                     'timeout'  => 10.0,
