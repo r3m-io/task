@@ -1,12 +1,18 @@
 <?php
 namespace Package\R3m\Io\Task\Trait;
 
+use GuzzleHttp\Exception\GuzzleException;
 use R3m\Io\Config;
 
 use R3m\Io\Module\Cli;
-
 use R3m\Io\Module\Core;
+
 use R3m\Io\Node\Model\Node;
+
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7;
 
 use Exception;
 
@@ -269,7 +275,7 @@ trait Main {
         } else {
             throw new Exception('No hosts found !' . PHP_EOL);
         }
-        $username = Cli::read('input', 'email: ');
+        $email = Cli::read('input', 'email: ');
         $password = Cli::read('input-hidden', 'password: ');
 
 
@@ -283,6 +289,47 @@ trait Main {
                 ]
             ]
         );
+        if($route){
+            if(
+                property_exists($url[$index_read], 'url') &&
+                property_exists($url[$index_read]->url, $object->config('framework.environment'))
+            ){
+                $login_url = $url[$index_read]->url->{$object->config('framework.environment')} . $route->path;
+                $login_method = 'POST';
+                $client = new Client([
+                    'timeout'  => 10.0,
+                ]);
+                try {
+                    $response = $client->request('POST', $login_url, [
+                        'email' => $email,
+                        'password' => $password
+                    ]);
+
+                    $statusCode = $response->getStatusCode();
+                    $body = $response->getBody()->getContents();
+
+                    ddd($body);
+
+                    // Now you can access your data from the $json array.
+                    // For example, to get a value associated with a key 'key3' in the JSON response:
+                    // $value = $json['key3'];
+
+                } catch (RequestException | GuzzleException $e) {
+                    echo Psr7\Message::toString($e->getRequest());
+                    if ($e->hasResponse()) {
+                        echo Psr7\Message::toString($e->getResponse());
+                    }
+                }
+            }
+
+
+
+
+
+        }
+
+
+
 
         d($route);
 
