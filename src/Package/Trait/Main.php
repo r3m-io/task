@@ -303,37 +303,35 @@ trait Main {
                 $client = new Client([
                     'timeout'  => 10.0,
                 ]);
-                try {
-                    $response = $client->request('POST', $login_url, [
-                        'email' => $email,
-                        'password' => $password
-                    ]);
+                $response = $client->request('POST', $login_url, [
+                    'email' => $email,
+                    'password' => $password
+                ]);
 
-                    $statusCode = $response->getStatusCode();
-                    $body = $response->getBody()->getContents();
-                    d($statusCode);
-                    ddd($body);
+                $statusCode = $response->getStatusCode();
+                $body = $response->getBody()->getContents();
+                d($statusCode);
+                ddd($body);
 
                     // Now you can access your data from the $json array.
                     // For example, to get a value associated with a key 'key3' in the JSON response:
                     // $value = $json['key3'];
 
+                /*
                 } catch (RequestException | GuzzleException $e) {
                     echo Psr7\Message::toString($e->getRequest());
                     if ($e->hasResponse()) {
                         echo Psr7\Message::toString($e->getResponse());
                     }
                 }
+                */
             }
-
-
-
-
-
         }
 //        d($route);
 
 //        ddd($url[$index_read]);
+
+        die('endtest');
 
         $options->options->server->authorization = 'Bearer ' . $token;
 
