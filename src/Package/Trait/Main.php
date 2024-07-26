@@ -330,6 +330,7 @@ trait Main {
                 $statusCode = $response->getStatusCode();
                 $body = $response->getBody()->getContents();
                 d($statusCode);
+                d('length: ' . strlen($body) / 1024 . 'KB');
                 ddd($body);
 
                     // Now you can access your data from the $json array.
