@@ -315,10 +315,10 @@ trait Main {
                     $login_method,
                     $login_url,
                     [
-//                        'headers' => [
-//                            'Content-Type' => 'application/json'
-//                        ],
-                        'form_params' => [
+                        'headers' => [
+                            'Content-Type' => 'application/json'
+                        ],
+                        'json' => [
                             'email' => $email,
                             'password' => $password
                         ]
