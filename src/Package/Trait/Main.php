@@ -315,9 +315,9 @@ trait Main {
                     $login_method,
                     $login_url,
                     [
-                        'headers' => [
-                            'Content-Type' => 'application/json'
-                        ],
+//                        'headers' => [
+//                            'Content-Type' => 'application/json'
+//                        ],
                         'form_params' => [
                             'email' => $email,
                             'password' => $password
