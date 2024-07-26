@@ -275,8 +275,11 @@ trait Main {
         } else {
             throw new Exception('No hosts found !' . PHP_EOL);
         }
-        $email = Cli::read('input', 'email: ');
-        $password = Cli::read('input-hidden', 'password: ');
+//        $email = Cli::read('input', 'email: ');
+//        $password = Cli::read('input-hidden', 'password: ');
+
+        $email = 'remco@universeorange.com';
+        $password = 'vanderVelde1983!';
 
 
         $route = $node->record(
