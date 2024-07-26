@@ -280,7 +280,7 @@ trait Main {
 
         $email = 'remco@universeorange.com';
         $password = 'vanderVelde1983!';
-
+        $user = false;
 
         $route = $node->record(
             'System.Route',
@@ -329,44 +329,19 @@ trait Main {
                 );
                 $statusCode = $response->getStatusCode();
                 $body = $response->getBody()->getContents();
-                d($statusCode);
-                d('length: ' . round(strlen($body) / 1024, 2) . 'KB');
-                ddd($body);
 
-                    // Now you can access your data from the $json array.
-                    // For example, to get a value associated with a key 'key3' in the JSON response:
-                    // $value = $json['key3'];
-
-                /*
-                } catch (RequestException | GuzzleException $e) {
-                    echo Psr7\Message::toString($e->getRequest());
-                    if ($e->hasResponse()) {
-                        echo Psr7\Message::toString($e->getResponse());
-                    }
-                }
-                */
+                $user = Core::object($body, Core::OBJECT_OBJECT);
             }
         }
-//        d($route);
-
-//        ddd($url[$index_read]);
-
-        die('endtest');
-
-        $options->options->server->authorization = 'Bearer ' . $token;
-
-
-        d($username);
-        d($password);
-
-        d($options);
-
-        $create = $node->create(
-            'Task',
-            $node->role_system(),
-            $options
-        );
-        ddd($create);
+        if($user){
+            $options->options->server->authorization = 'Bearer ' . $user->token;
+            $create = $node->create(
+                'Task',
+                $node->role_system(),
+                $options
+            );
+            ddd($create);
+        }
         return $create;
     }
 }
