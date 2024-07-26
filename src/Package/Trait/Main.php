@@ -308,13 +308,16 @@ trait Main {
 
                 } else {
                     $client = new Client([
-                        'timeout'  => 10.0,
+                        'timeout'  => 30.0,
                     ]);
                 }
                 $response = $client->request(
                     $login_method,
                     $login_url,
                     [
+                        'headers' => [
+                            'Content-Type' => 'application/json'
+                        ],
                         'form_params' => [
                             'email' => $email,
                             'password' => $password
