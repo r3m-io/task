@@ -334,6 +334,7 @@ trait Main {
             }
         }
         if($user){
+            ddd($options);
             $options->options->server->authorization = 'Bearer ' . $user->token;
             $create = $node->create(
                 'Task',
