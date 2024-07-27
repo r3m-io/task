@@ -24,5 +24,6 @@ trait Service {
     public function run($flags, $options){
         d($flags);
         d($options);
+        return [];
     }
 }
