@@ -62,9 +62,10 @@ trait Service {
                 $task = $this->not_before($task);
                 $queue = $this->queue($queue, $task, $count);
             }
-            $chunks = array_chunk($queue, ceil($count / $options->thread));
-            $this->parallel($chunks, $options);
-
+            if($count > 0){
+                $chunks = array_chunk($queue, ceil($count / $options->thread));
+                $this->parallel($chunks, $options);
+            }
         }
         echo 'Done...' . PHP_EOL;
 //        return $result;
