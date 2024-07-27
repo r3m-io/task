@@ -43,7 +43,16 @@ trait Service {
                 ]
             ]
         );
-        ddd($result);
-        return $result;
+        if(
+            array_key_exists($result, 'count') &&
+            array_key_exists($result, 'list') &&
+            $result['count'] >= 0
+        ){
+            foreach($result['list'] as $nr => $task){
+                d($task);
+            }
+        }
+        echo 'Done...' . PHP_EOL;
+//        return $result;
     }
 }
