@@ -210,9 +210,6 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
-                    d($destination_controller);
-                    d($methods);
-                    ddd($function);
                     if(
                         $function &&
                         $methods &&
