@@ -170,7 +170,7 @@ trait Service {
 
         $patch->set('uuid', $data->get('uuid'));
         $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
-//        $node->patch(Task::NODE, $node->role_system(), $patch->data());
+        $node->patch(Task::NODE, $node->role_system(), $patch->data());
         try {
             $response = [];
             $command = $data->get('options.command');
@@ -225,14 +225,22 @@ trait Service {
                         );
                         $object->config('request', $request);
                         $result = $destination_controller::{$function}($object);
-                        Event::trigger($object, 'app.run.route.controller', [
-                            'destination' => $destination,
-                            'response' => $result
-                        ]);
-                        $result = OutputFilter::trigger($object, $destination, [
-                            'methods' => $methods,
-                            'response' => $result
-                        ]);
+                        Event::trigger(
+                            $object,
+                            'r3m.io.task.controller',
+                            [
+                                'destination' => $destination,
+                                'response' => $result
+                            ]
+                        );
+                        $result = OutputFilter::trigger(
+                            $object,
+                            $destination,
+                            [
+                                'methods' => $methods,
+                                'response' => $result
+                            ]
+                        );
                         $response[] = $result;
                         $count++;
                     }
@@ -248,7 +256,7 @@ trait Service {
             } else {
                 $patch->set('options.response', $response);
             }
-//            $node->patch(Task::NODE, $node->role_system(), $patch->data());
+            $node->patch(Task::NODE, $node->role_system(), $patch->data());
         }
         catch(Exception $exception){
             $patch->set('options.status', Task::OPTIONS_STATUS_EXCEPTION);
