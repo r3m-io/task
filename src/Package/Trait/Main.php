@@ -357,7 +357,7 @@ trait Main {
                         'task' => (microtime(true) - $start) * 1000
                     ];
                     $response['duration']->item_per_second = (1 / $response['duration']->total) * 1000;
-                    $response['duration']->item_per_second_nodelist = (1 / $response['duration']->nodelist) * 1000;
+                    $response['duration']->item_per_second_task = (1 / $response['duration']->task) * 1000;
                 }
             }
             return $response;
