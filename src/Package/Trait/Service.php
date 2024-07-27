@@ -205,10 +205,12 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
-                    d($destination_controller);
-                    d($methods);
-                    ddd($function);
-
+                    $response[] = [
+                        'controller' => $destination_controller,
+                        'methods' => $methods,
+                        'function' => $function
+                    ];
+                    continue;
                     if(
                         $function &&
                         $methods &&
