@@ -14,6 +14,7 @@ use R3m\Io\Module\Dir;
 use R3m\Io\Module\Handler;
 use R3m\Io\Module\OutputFilter;
 use R3m\Io\Module\Response;
+use R3m\Io\Module\Route;
 use R3m\Io\Node\Model\Node;
 
 use Package\R3m\Io\Task\Service\Task;
