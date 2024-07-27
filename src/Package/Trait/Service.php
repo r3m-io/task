@@ -7,9 +7,12 @@ use R3m\Io\Config;
 use R3m\Io\Module\Core;
 use R3m\Io\Module\Data;
 use R3m\Io\Module\Destination;
+use R3m\Io\Module\Event;
 use R3m\Io\Module\File;
 use R3m\Io\Module\Dir;
 
+use R3m\Io\Module\Handler;
+use R3m\Io\Module\OutputFilter;
 use R3m\Io\Module\Response;
 use R3m\Io\Node\Model\Node;
 
@@ -200,7 +203,36 @@ trait Service {
                             Response::STATUS_NOT_IMPLEMENTED
                         );
                     }
-                    $count++;
+                    $function = $destination->get('function');
+                    $methods = get_class_methods($controller);
+                    if(
+                        $destination &&
+                        $function &&
+                        $methods &&
+                        in_array($function, $methods, true)
+                    ) {
+                        $functions[] = $function;
+                        $object->config('controller.function', $function);
+                        $request = Core::deep_clone(
+                            $object->get(
+                                App::NAMESPACE . '.' .
+                                Handler::NAME_REQUEST . '.' .
+                                Handler::NAME_INPUT
+                            )->data()
+                        );
+                        $object->config('request', $request);
+                        $result = $controller::{$function}($object);
+                        Event::trigger($object, 'app.run.route.controller', [
+                            'destination' => $destination,
+                            'response' => $result
+                        ]);
+                        $result = OutputFilter::trigger($object, $destination, [
+                            'methods' => $methods,
+                            'response' => $result
+                        ]);
+                        $response[] = $result;
+                        $count++;
+                    }
                 }
             }
             $patch->set('options.status', Task::OPTIONS_STATUS_DONE);
