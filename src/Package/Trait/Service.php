@@ -38,6 +38,7 @@ trait Service {
                     ]
                 ],
                 'sort' => [
+                    'options.priority' => 'ASC',
                     'is.created' => 'ASC'
                 ]
             ]
