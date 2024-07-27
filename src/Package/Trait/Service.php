@@ -156,6 +156,11 @@ trait Service {
     private function run_task($task){
         $object = $this->object();
         $data = new Data($task);
+        $node = new Node($object);
+        $patch = new Data();
+        $patch->set('uuid', $data->get('uuid'));
+        $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
+        $node->patch(Task::NODE, $node->role_system(), $patch->data());
         return $task;
     }
 
@@ -165,6 +170,8 @@ trait Service {
     private function not_before($task){
         $object = $this->object();
         $data = new Data($task);
+        $patch = new Data();
+        $patch->set('uuid', $data->get('uuid'));
         $time = time();
         if($data->has('options.not_before')){
             $not_before = $data->get('options.not_before');
@@ -173,18 +180,18 @@ trait Service {
                 if($data->get('options.status') !== Task::OPTIONS_STATUS_WAITING){
                     // update status to waiting
                     // a waiting task gets updated to status 'queue' every minute until not_before is reached
-                    $data->set('options.status', Task::OPTIONS_STATUS_WAITING);
+                    $patch->set('options.status', Task::OPTIONS_STATUS_WAITING);
                     $is_set = true;
                 }
             } else {
                 if($data->get('options.status') === Task::OPTIONS_STATUS_WAITING){
-                    $data->set('options.status', Task::OPTIONS_STATUS_QUEUE);
+                    $patch->set('options.status', Task::OPTIONS_STATUS_QUEUE);
                     $is_set = true;
                 }
             }
             if($is_set){
                 $node = new Node($object);
-                $node->patch(Task::NODE, $node->role_system(), $data->data());
+                $node->patch(Task::NODE, $node->role_system(), $patch->data());
             }
         }
         return $data->data();
