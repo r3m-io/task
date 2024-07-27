@@ -45,7 +45,7 @@ trait Service {
         );
         if(
             array_key_exists('count', $result) &&
-            array_key_exists('listl', $result) &&
+            array_key_exists('list', $result) &&
             $result['count'] >= 0
         ){
             foreach($result['list'] as $nr => $task){
