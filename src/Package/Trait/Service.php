@@ -21,7 +21,7 @@ trait Service {
      * @throws FileWriteException
      * @throws Exception
      */
-    public function run($flags, $options){
+    public function execute($flags, $options){
         d($flags);
         d($options);
         return [];
