@@ -342,8 +342,8 @@ trait Main {
             $options->options->server['authorization'] = 'Bearer ' . $user->token;
             $options->options->host = $url[$index_read];
             $time = time();
-            if (!property_exists($options->options, 'is')){
-                $options->options->is = (object)[];
+            if (!property_exists($options, 'is')){
+                $options->is = (object)[];
             }
             $options->is->created = $time;
             $options->is->updated = $time;
