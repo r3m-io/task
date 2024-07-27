@@ -190,17 +190,12 @@ trait Service {
             if(is_array($controller)){
                 foreach($controller as $execute){
                     App::contentType($object);
-                    $destination = new Destination();
+
                     $route = (object) [
                         'controller' => $execute
                     ];
                     $route = Route::controller($route);
-                    ddd($route);
-
-                    $destination->set('controller', $execute);
-
-
-
+                    $destination = new Destination($route);
                     App::controller($object, $destination);
                     $destination_controller = $destination->get('controller');
                     $methods = get_class_methods($destination_controller);
@@ -215,6 +210,9 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
+                    d($destination_controller);
+                    d($methods);
+                    ddd($function);
                     if(
                         $function &&
                         $methods &&
