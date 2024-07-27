@@ -186,15 +186,14 @@ trait Service {
                 }
             }
             $controller = $data->get('options.controller');
-            ddd($controller);
             if(is_array($controller)){
                 foreach($controller as $execute){
                     App::contentType($object);
                     $destination = new Destination();
                     $destination->set('controller', $execute);
                     App::controller($object, $destination);
-                    $controller = $destination->get('controller');
-                    $methods = get_class_methods($controller);
+                    $destination_controller = $destination->get('controller');
+                    $methods = get_class_methods($destination_controller);
                     if (empty($methods)) {
                         $exception = new Exception(
                             'Couldn\'t determine controller (' . $destination->get('controller') . ')'
@@ -206,7 +205,7 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
-                    d($controller);
+                    d($destination_controller);
                     d($methods);
                     ddd($function);
 
@@ -225,7 +224,7 @@ trait Service {
                             )->data()
                         );
                         $object->config('request', $request);
-                        $result = $controller::{$function}($object);
+                        $result = $destination_controller::{$function}($object);
                         ddd($result);
                         Event::trigger($object, 'app.run.route.controller', [
                             'destination' => $destination,
