@@ -243,7 +243,11 @@ trait Service {
             }
             $patch->set('options.status', Task::OPTIONS_STATUS_DONE);
             if($count === 1){
-                $patch->set('options.response', $response[0] ?? (object) []);
+                if(!array_key_exists(0, $response)){
+                    $response = [];
+                    $response[0] = (object) [];
+                }
+                $patch->set('options.response', $response[0]);
             } else {
                 $patch->set('options.response', $response);
             }
