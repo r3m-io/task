@@ -52,12 +52,17 @@ trait Service {
             $result['count'] >= 0
         ){
             $queue = [];
+            $count = 0;
             foreach($result['list'] as $nr => $task){
                 $task = $this->not_before($task);
-                $queue = $this->queue($queue, $task);
+                $queue = $this->queue($queue, $task, $count);
             }
-            d($queue);
-            d(count($queue));
+            $threads = $options->thread ?? 8;
+            $chunks = array_chunk($queue, ceil($count / $threads));
+            $chunk_count = count($chunks);
+            d($chunks);
+            d($chunk_count);
+
         }
         echo 'Done...' . PHP_EOL;
 //        return $result;
@@ -97,10 +102,11 @@ trait Service {
     /**
      * @throws Exception
      */
-    private function queue($queue=[], $task){
+    private function queue($queue=[], $task, &$count=0){
         $data = new Data($task);
         if($data->get('options.status') === Task::OPTIONS_STATUS_QUEUE){
             $queue[] = $data->data();
+            $count++;
         }
         return $queue;
     }
