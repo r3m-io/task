@@ -335,7 +335,6 @@ trait Main {
         }
         if($user){
             $options->options->server['authorization'] = 'Bearer ' . $user->token;
-            $options->options->route = $route['node'];
             $options->options->host = $url[$index_read];
             $create = $node->create(
                 'Task',
