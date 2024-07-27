@@ -75,6 +75,8 @@ trait Service {
             } else {
                 $data->set('options.status', Task::OPTIONS_STATUS_QUEUE);
             }
+            $node = new Node();
+            $node->patch('Task', $node->role_system(), $data->data());
         }
         return $data->data();
     }
