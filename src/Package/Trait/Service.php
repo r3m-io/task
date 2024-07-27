@@ -10,6 +10,8 @@ use R3m\Io\Module\Dir;
 
 use R3m\Io\Node\Model\Node;
 
+use Package\R3m\Io\Task\Service\Task;
+
 use Exception;
 
 use R3m\Io\Exception\FileWriteException;
@@ -50,7 +52,7 @@ trait Service {
             $result['count'] >= 0
         ){
             foreach($result['list'] as $nr => $task){
-                $this->not_before($task);
+                $task = $this->not_before($task);
                 d($task);
             }
         }
@@ -67,9 +69,13 @@ trait Service {
         if($data->has('options.not_before')){
             $not_before = $data->get('options.not_before');
             if($time < $not_before){
+                $data->set('options.status', Task::OPTIONS_STATUS_WAITING);
                 // update status to waiting
                 // a waiting task gets updated to status 'queue' every minute until not_before is reached
+            } else {
+                $data->set('options.status', Task::OPTIONS_STATUS_QUEUE);
             }
         }
+        return $data->data();
     }
 }
