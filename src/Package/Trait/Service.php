@@ -27,6 +27,11 @@ trait Service {
     public function execute($flags, $options){
         d($flags);
         d($options);
+
+        if(!property_exists('thread', $options)){
+            $options->thread = 8;
+        }
+
         $object = $this->object();
         $node = new Node($object);
         $result = $node->list(
@@ -57,15 +62,97 @@ trait Service {
                 $task = $this->not_before($task);
                 $queue = $this->queue($queue, $task, $count);
             }
-            $threads = $options->thread ?? 8;
-            $chunks = array_chunk($queue, ceil($count / $threads));
-            $chunk_count = count($chunks);
+            $chunks = array_chunk($queue, ceil($count / $options->thread));
             d($chunks);
-            d($chunk_count);
+            $this->parallel($chunks, $options);
 
         }
         echo 'Done...' . PHP_EOL;
 //        return $result;
+    }
+
+    /**
+     * @throws ObjectException
+     * @throws FileWriteException
+     */
+    private function parallel($chunks=[], $options){
+        $object = $this->object();
+        if (
+            property_exists($options, 'ramdisk_dir') &&
+            $options->ramdisk_dir !== false
+        ) {
+            $ramdisk_dir = $options['ramdisk_dir'];
+        } else {
+            $ramdisk_dir = $object->config('ramdisk.url') .
+                $object->config('posix.id') .
+                $object->config('ds');
+        }
+        $ramdisk_dir_node = $ramdisk_dir .
+            'Node' .
+            $object->config('ds')
+        ;
+        $ramdisk_dir_parallel = $ramdisk_dir_node .
+            'Parallel' .
+            $object->config('ds')
+        ;
+        $name = Task::NODE;
+        for ($i = 0; $i < $options->thread; $i++) {
+            // Create a pipe
+            $sockets = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP);
+            if ($sockets === false) {
+                die("Unable to create socket pair for child $i");
+            }
+            $key_options = [
+                'time' => time()
+            ];
+            $key = sha1(Core::object($key_options, Core::OBJECT_JSON));
+            $url[$i] = $ramdisk_dir_parallel .
+                $name .
+                '.' .
+                $key .
+                '.' .
+                $i .
+                $object->config('extension.json');
+            if(array_key_exists($i, $chunks)){
+                $chunk = $chunks[$i];
+                $pid = pcntl_fork();
+                if ($pid == -1) {
+                    die("Could not fork for child $i");
+                } elseif ($pid) {
+                    // Parent process
+                    // Close the child's socket
+                    fclose($sockets[0]);
+                    // Store the parent socket and child PID
+                    $pipes[$i] = $sockets[1];
+                    $children[$i] = $pid;
+                } else {
+                    // Child process
+                    // Close the parent's socket
+                    fclose($sockets[1]);
+                    $result = [];
+                    foreach($chunk as $nr => $task) {
+                        $result[] = $this->run_task($task);
+                    }
+                    // Send serialized data to the parent
+                    File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
+                    fwrite($sockets[0], 1);
+                    fclose($sockets[0]);
+                    exit(0);
+                }
+            }
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function run_task($task){
+        $object = $this->object();
+        $data = new Data($task);
+        return [
+            '#class' => $task->{'#class'},
+            'time' => time()
+        ];
     }
 
     /**
