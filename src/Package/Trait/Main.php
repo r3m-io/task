@@ -31,9 +31,13 @@ trait Main {
 //        d($options);
         $object = $this->object();
         $node = new Node($object);
-
-
-
+        $start = false;
+        if(
+            property_exists($options, 'duration') &&
+            $options->duration === true
+        ){
+            $start = microtime(true);
+        }
         if(property_exists($options, 'description')){
             if(is_array($options->description)){
                 $options->description = implode(PHP_EOL, $options->description);
@@ -281,7 +285,7 @@ trait Main {
         $email = 'remco@universeorange.com';
         $password = 'vanderVelde1983!';
         $user = false;
-
+        $server = false;
         $route = $node->record(
             'System.Route',
             $node->role_system(),
@@ -328,20 +332,35 @@ trait Main {
                     ]
                 );
                 $statusCode = $response->getStatusCode();
-                $body = $response->getBody()->getContents();
-
-                $user = Core::object($body, Core::OBJECT_OBJECT);
+                if($statusCode === 200){
+                    $body = $response->getBody()->getContents();
+                    $user = Core::object($body, Core::OBJECT_OBJECT);
+                }
             }
         }
         if($user){
             $options->options->server['authorization'] = 'Bearer ' . $user->token;
             $options->options->host = $url[$index_read];
-            $create = $node->create(
+            $response = $node->create(
                 'Task',
                 $node->role_system(),
                 $options
             );
-            return $create;
+            if(
+                property_exists($options, 'duration') &&
+                $options->duration === true
+            ){
+                if($start){
+                    $response['duration'] = (object) [
+                        'boot' => ($start - $object->config('time.start')) * 1000,
+                        'total' => (microtime(true) - $object->config('time.start')) * 1000,
+                        'task' => (microtime(true) - $start) * 1000
+                    ];
+                    $response['duration']->item_per_second = (1 / $response['duration']->total) * 1000;
+                    $response['duration']->item_per_second_nodelist = (1 / $response['duration']->nodelist) * 1000;
+                }
+            }
+            return $response;
         }
         return false;
     }
