@@ -190,10 +190,16 @@ trait Service {
                 foreach($controller as $execute){
                     App::contentType($object);
                     $destination = new Destination();
+
+                    $route = Route::controller($execute);
+                    ddd($route);
+
                     $destination->set('controller', $execute);
+
+
+
                     App::controller($object, $destination);
                     $destination_controller = $destination->get('controller');
-                    echo $destination_controller . PHP_EOL;
                     $methods = get_class_methods($destination_controller);
                     if (empty($methods)) {
                         $exception = new Exception(
