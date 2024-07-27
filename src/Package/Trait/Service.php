@@ -4,6 +4,7 @@ namespace Package\R3m\Io\Task\Trait;
 use R3m\Io\Config;
 
 use R3m\Io\Module\Core;
+use R3m\Io\Module\Data;
 use R3m\Io\Module\File;
 use R3m\Io\Module\Dir;
 
@@ -49,10 +50,26 @@ trait Service {
             $result['count'] >= 0
         ){
             foreach($result['list'] as $nr => $task){
+                $this->not_before($task);
                 d($task);
             }
         }
         echo 'Done...' . PHP_EOL;
 //        return $result;
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function not_before($task){
+        $data = new Data($task);
+        $time = time();
+        if($data->has('options.not_before')){
+            $not_before = $data->get('options.not_before');
+            if($time < $not_before){
+                // update status to waiting
+                // a waiting task gets updated to status 'queue' every minute until not_before is reached
+            }
+        }
     }
 }
