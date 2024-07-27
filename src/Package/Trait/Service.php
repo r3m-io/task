@@ -222,7 +222,7 @@ trait Service {
                         );
                         $object->config('request', $request);
                         $result = $controller::{$function}($object);
-                        d($result);
+                        ddd($result);
                         Event::trigger($object, 'app.run.route.controller', [
                             'destination' => $destination,
                             'response' => $result
