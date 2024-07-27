@@ -95,6 +95,14 @@ trait Service {
             'Parallel' .
             $object->config('ds')
         ;
+        if(!Dir::exist($ramdisk_dir_parallel)){
+            Dir::create($ramdisk_dir_parallel, Dir::CHMOD);
+            File::permission($object, [
+                'ramdisk_dir' => $ramdisk_dir,
+                'ramdisk_dir_node' => $ramdisk_dir_node,
+                'ramdisk_dir_parallel' => $ramdisk_dir_parallel,
+            ]);
+        }
         $name = Task::NODE;
         for ($i = 0; $i < $options->thread; $i++) {
             // Create a pipe
