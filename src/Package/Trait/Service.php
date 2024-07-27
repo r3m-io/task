@@ -24,6 +24,24 @@ trait Service {
     public function execute($flags, $options){
         d($flags);
         d($options);
-        return [];
+        $object = $this->object();
+        $node = new Node($object);
+        $result = $node->list(
+            'Task',
+            $node->role_system(),
+            [
+                'where' => [
+                    [
+                        'value' => 'queue',
+                        'attribute' => 'status',
+                        'operator' => '==='
+                    ]
+                ],
+                'sort' => [
+                    'is.created' => 'ASC'
+                ]
+            ]
+        );
+        return $result;
     }
 }
