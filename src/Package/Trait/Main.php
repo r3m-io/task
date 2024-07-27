@@ -69,8 +69,13 @@ trait Main {
             $options->options->request = $object->request();
             $options->options->server = $object->server();
             $options->options->flags = $flags;
-            $options->options->status  = 'queue';
-            $options->options->priority = 100;
+            $options->options->status  = $options->options->status ?? 'queue';
+            $options->options->priority = $options->options->priority ?? 100;
+            if(property_exists($options->options, 'not_before')){
+                if(!is_int($options->options->not_before)){
+                    $options->options->not_before = strtotime($options->options->not_before);
+                }
+            }
         } else {
             throw new Exception('options not found (controller / command)');
         }
