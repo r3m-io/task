@@ -7,6 +7,7 @@ class Task
     const OPTIONS_STATUS_QUEUE = 'queue';
     const OPTIONS_STATUS_DONE = 'done';
     const OPTIONS_STATUS_ERROR = 'error';
+    const OPTIONS_STATUS_EXCEPTION = 'exception';
     const OPTIONS_STATUS_RUNNING = 'running';
     const OPTIONS_STATUS_WAITING = 'waiting';
 

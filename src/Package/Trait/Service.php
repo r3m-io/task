@@ -161,6 +161,31 @@ trait Service {
         $patch->set('uuid', $data->get('uuid'));
         $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
         $node->patch(Task::NODE, $node->role_system(), $patch->data());
+        try {
+            $response = [];
+            $command = $data->get('options.command');
+            if(is_array($command)){
+                foreach($command as $execute){
+                    Core::execute($object, $execute, $output, $notification);
+                    $response[] = (object) [
+                        'command' => $execute,
+                        'output' => $output,
+                        'notification' => $notification
+                    ];
+                }
+            }
+            $controller = $data->get('options.controller');
+            if(is_array($controller)){
+                foreach($controller as $execute){
+                    echo $execute . PHP_EOL;
+                }
+            }
+        }
+        catch(Exception $exception){
+            $patch->set('options.status', Task::OPTIONS_STATUS_EXCEPTION);
+            $patch->set('options.exception', explode(PHP_EOL, (string) $exception));
+            $node->patch(Task::NODE, $node->role_system(), $patch->data());
+        }
         return $task;
     }
 

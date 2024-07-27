@@ -72,16 +72,20 @@
                         "multiple": false
                     },
                     {
+                        "name": "exception",
+                        "type": "array"
+                    },
+                    {
+                        "name": "error",
+                        "type": "array"
+                    },
+                    {
                         "name": "status",
                         "type": "string"
                     },
                     {
                         "name": "not_before",
-                        "type": "datetime"
-                    },
-                    {
-                        "name": "is_executed",
-                        "type": "datetime"
+                        "type": "integer|string"
                     },
                     {
                         "name": "ttl",
