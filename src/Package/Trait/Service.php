@@ -69,6 +69,7 @@ trait Service {
                 $queue = $this->queue($queue, $task, $count);
             }
             if($count > 0){
+                echo 'Running ' . $count . ' tasks... over ' . $options->thread .' threads.' . PHP_EOL;
                 $chunks = array_chunk($queue, ceil($count / $options->thread));
                 $this->parallel($chunks, $options);
             }
