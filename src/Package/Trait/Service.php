@@ -159,15 +159,14 @@ trait Service {
         $data = new Data($task);
         $node = new Node($object);
         $patch = new Data();
-        ddd($task);
-
 
         $patch->set('uuid', $data->get('uuid'));
         $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
-        $node->patch(Task::NODE, $node->role_system(), $patch->data());
+//        $node->patch(Task::NODE, $node->role_system(), $patch->data());
         try {
             $response = [];
             $command = $data->get('options.command');
+            $count = 0;
             if(is_array($command)){
                 foreach($command as $execute){
                     Core::execute($object, $execute, $output, $notification);
@@ -176,14 +175,23 @@ trait Service {
                         'output' => $output,
                         'notification' => $notification
                     ];
+                    $count++;
                 }
             }
             $controller = $data->get('options.controller');
             if(is_array($controller)){
                 foreach($controller as $execute){
                     echo $execute . PHP_EOL;
+                    $count++;
                 }
             }
+            $patch->set('options.status', Task::OPTIONS_STATUS_DONE);
+            if($count === 1){
+                $patch->set('options.response', $response[0] ?? (object) []);
+            } else {
+                $patch->set('options.response', $response);
+            }
+//            $node->patch(Task::NODE, $node->role_system(), $patch->data());
         }
         catch(Exception $exception){
             $patch->set('options.status', Task::OPTIONS_STATUS_EXCEPTION);
