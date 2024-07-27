@@ -33,7 +33,7 @@ trait Service {
                 'where' => [
                     [
                         'value' => 'queue',
-                        'attribute' => 'status',
+                        'attribute' => 'options.status',
                         'operator' => '==='
                     ]
                 ],
