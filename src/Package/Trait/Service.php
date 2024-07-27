@@ -64,6 +64,7 @@ trait Service {
      * @throws Exception
      */
     private function not_before($task){
+        $object = $this->object();
         $data = new Data($task);
         $time = time();
         if($data->has('options.not_before')){
@@ -83,7 +84,7 @@ trait Service {
                 }
             }
             if($is_set){
-                $node = new Node();
+                $node = new Node($object);
                 $node->patch(Task::NODE, $node->role_system(), $data->data());
             }
         }
