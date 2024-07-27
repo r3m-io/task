@@ -8,9 +8,19 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "executed",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -24,7 +34,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -50,6 +59,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -66,7 +76,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -92,6 +101,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -108,7 +118,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -134,6 +143,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -150,7 +160,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -176,6 +185,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -192,7 +202,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -218,6 +227,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -234,7 +244,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -260,6 +269,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -276,7 +286,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
@@ -302,6 +311,7 @@
                             "output": [
                                 "created",
                                 "updated",
+                                "executed",
                                 "deleted"
                             ]
                         },
@@ -318,7 +328,6 @@
                                 "response",
                                 "status",
                                 "not_before",
-                                "is_executed",
                                 "ttl",
                                 "host"
                             ]
