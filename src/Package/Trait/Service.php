@@ -186,6 +186,7 @@ trait Service {
                 }
             }
             $controller = $data->get('options.controller');
+            ddd($controller);
             if(is_array($controller)){
                 foreach($controller as $execute){
                     App::contentType($object);
