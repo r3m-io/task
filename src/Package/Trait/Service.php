@@ -63,7 +63,6 @@ trait Service {
                 $queue = $this->queue($queue, $task, $count);
             }
             $chunks = array_chunk($queue, ceil($count / $options->thread));
-            d($chunks);
             $this->parallel($chunks, $options);
 
         }
@@ -157,10 +156,7 @@ trait Service {
     private function run_task($task){
         $object = $this->object();
         $data = new Data($task);
-        return [
-            '#class' => $task->{'#class'},
-            'time' => time()
-        ];
+        return $task;
     }
 
     /**
