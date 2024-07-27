@@ -68,15 +68,24 @@ trait Service {
         $time = time();
         if($data->has('options.not_before')){
             $not_before = $data->get('options.not_before');
+            $is_set = false;
             if($time < $not_before){
-                $data->set('options.status', Task::OPTIONS_STATUS_WAITING);
-                // update status to waiting
-                // a waiting task gets updated to status 'queue' every minute until not_before is reached
+                if($data->get('options.status') !== Task::OPTIONS_STATUS_WAITING){
+                    // update status to waiting
+                    // a waiting task gets updated to status 'queue' every minute until not_before is reached
+                    $data->set('options.status', Task::OPTIONS_STATUS_WAITING);
+                    $is_set = true;
+                }
             } else {
-                $data->set('options.status', Task::OPTIONS_STATUS_QUEUE);
+                if($data->get('options.status') === Task::OPTIONS_STATUS_WAITING){
+                    $data->set('options.status', Task::OPTIONS_STATUS_QUEUE);
+                    $is_set = true;
+                }
             }
-            $node = new Node();
-            $node->patch('Task', $node->role_system(), $data->data());
+            if($is_set){
+                $node = new Node();
+                $node->patch(Task::NODE, $node->role_system(), $data->data());
+            }
         }
         return $data->data();
     }

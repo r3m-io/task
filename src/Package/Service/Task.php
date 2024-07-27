@@ -3,6 +3,7 @@ namespace Package\R3m\Io\Task\Service;
 
 class Task
 {
+    const NODE = 'Task';
     const OPTIONS_STATUS_QUEUE = 'queue';
     const OPTIONS_STATUS_DONE = 'done';
     const OPTIONS_STATUS_ERROR = 'error';
