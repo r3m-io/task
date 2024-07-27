@@ -204,9 +204,11 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
-                    $methods = get_class_methods($controller);
+                    d($controller);
+                    d($methods);
+                    ddd($function);
+
                     if(
-                        $destination &&
                         $function &&
                         $methods &&
                         in_array($function, $methods, true)
