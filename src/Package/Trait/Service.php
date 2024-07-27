@@ -28,7 +28,7 @@ trait Service {
         d($flags);
         d($options);
 
-        if(!property_exists('thread', $options)){
+        if(!property_exists($options, 'thread')){
             $options->thread = 8;
         }
 
