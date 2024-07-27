@@ -159,6 +159,9 @@ trait Service {
         $data = new Data($task);
         $node = new Node($object);
         $patch = new Data();
+        ddd($task);
+
+
         $patch->set('uuid', $data->get('uuid'));
         $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
         $node->patch(Task::NODE, $node->role_system(), $patch->data());
