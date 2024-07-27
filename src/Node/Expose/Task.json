@@ -41,9 +41,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -74,9 +83,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -107,9 +125,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -140,9 +167,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -173,9 +209,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -206,9 +251,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
@@ -239,9 +293,18 @@
                         "uuid",
                         "#class",
                         "description",
-                        "options"
+                        "options",
+                        "is"
                     ],
                     "object": {
+                        "is": {
+                            "multiple": false,
+                            "output": [
+                                "created",
+                                "updated",
+                                "deleted"
+                            ]
+                        },
                         "options": {
                             "multiple": false,
                             "output": [
