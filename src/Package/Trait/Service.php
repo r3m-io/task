@@ -51,10 +51,13 @@ trait Service {
             array_key_exists('list', $result) &&
             $result['count'] >= 0
         ){
+            $queue = [];
             foreach($result['list'] as $nr => $task){
                 $task = $this->not_before($task);
-                d($task);
+                $queue = $this->queue($queue, $task);
             }
+            d($queue);
+            d(count($queue));
         }
         echo 'Done...' . PHP_EOL;
 //        return $result;
@@ -89,5 +92,16 @@ trait Service {
             }
         }
         return $data->data();
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function queue($queue=[], $task){
+        $data = new Data($task);
+        if($data->get('options.status') === Task::OPTIONS_STATUS_QUEUE){
+            $queue[] = $data->data();
+        }
+        return $queue;
     }
 }
