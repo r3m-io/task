@@ -205,8 +205,6 @@ trait Service {
         if($data->has('options.not_before')){
             $not_before = $data->get('options.not_before');
             $is_set = false;
-            d('time:' . $time);
-            d('not before: ' . $not_before);
             if($time < $not_before){
                 if($data->get('options.status') !== Task::OPTIONS_STATUS_WAITING){
                     // update status to waiting
@@ -223,6 +221,7 @@ trait Service {
             if($is_set){
                 $node = new Node($object);
                 $node->patch(Task::NODE, $node->role_system(), $patch->data());
+                $data->set('options.status', $patch->get('options.status'));
             }
         }
         return $data->data();
