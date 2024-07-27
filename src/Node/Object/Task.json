@@ -12,6 +12,25 @@
                 "type": "string"
             },
             {
+                "name": "is",
+                "type": "object",
+                "property": [
+                    {
+                        "name": "created",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "updated",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "type": "integer"
+                    }
+                ],
+                "multiple": false
+            },
+            {
                 "name": "options",
                 "type": "object",
                 "property": [
