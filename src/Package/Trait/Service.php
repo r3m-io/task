@@ -191,8 +191,10 @@ trait Service {
                 foreach($controller as $execute){
                     App::contentType($object);
                     $destination = new Destination();
-
-                    $route = Route::controller($execute);
+                    $route = (object) [
+                        'controller' => $execute
+                    ];
+                    $route = Route::controller($route);
                     ddd($route);
 
                     $destination->set('controller', $execute);
