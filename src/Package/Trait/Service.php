@@ -6,6 +6,7 @@ use R3m\Io\Config;
 
 use R3m\Io\Module\Core;
 use R3m\Io\Module\Data;
+use R3m\Io\Module\Destination;
 use R3m\Io\Module\File;
 use R3m\Io\Module\Dir;
 
@@ -184,7 +185,7 @@ trait Service {
             if(is_array($controller)){
                 foreach($controller as $execute){
                     App::contentType($object);
-                    $destination = new Data();
+                    $destination = new Destination();
                     $destination->set('controller', $execute);
                     App::controller($object, $destination);
                     $controller = $destination->get('controller');
