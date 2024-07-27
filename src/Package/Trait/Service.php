@@ -1,6 +1,7 @@
 <?php
 namespace Package\R3m\Io\Task\Trait;
 
+use R3m\Io\App;
 use R3m\Io\Config;
 
 use R3m\Io\Module\Core;
@@ -8,6 +9,7 @@ use R3m\Io\Module\Data;
 use R3m\Io\Module\File;
 use R3m\Io\Module\Dir;
 
+use R3m\Io\Module\Response;
 use R3m\Io\Node\Model\Node;
 
 use Package\R3m\Io\Task\Service\Task;
@@ -181,7 +183,22 @@ trait Service {
             $controller = $data->get('options.controller');
             if(is_array($controller)){
                 foreach($controller as $execute){
-                    echo $execute . PHP_EOL;
+                    App::contentType($object);
+                    $destination = new Data();
+                    $destination->set('controller', $execute);
+                    App::controller($object, $destination);
+                    $controller = $destination->get('controller');
+                    $methods = get_class_methods($controller);
+                    if (empty($methods)) {
+                        $exception = new Exception(
+                            'Couldn\'t determine controller (' . $destination->get('controller') . ')'
+                        );
+                        $response[] = new Response(
+                            App::exception_to_json($exception),
+                            Response::TYPE_JSON,
+                            Response::STATUS_NOT_IMPLEMENTED
+                        );
+                    }
                     $count++;
                 }
             }
@@ -198,7 +215,7 @@ trait Service {
             $patch->set('options.exception', explode(PHP_EOL, (string) $exception));
             $node->patch(Task::NODE, $node->role_system(), $patch->data());
         }
-        return $task;
+        return $patch->get('options.response');
     }
 
     /**
