@@ -26,8 +26,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -60,8 +59,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -94,8 +92,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -128,8 +125,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -162,8 +158,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -196,8 +191,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -230,8 +224,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
@@ -264,8 +257,7 @@
                                 "not_before",
                                 "is_executed",
                                 "ttl",
-                                "host",
-                                "route"
+                                "host"
                             ]
                         }
                     }
