@@ -205,12 +205,6 @@ trait Service {
                         );
                     }
                     $function = $destination->get('function');
-                    $response[] = [
-                        'controller' => $destination_controller,
-                        'methods' => $methods,
-                        'function' => $function
-                    ];
-                    continue;
                     if(
                         $function &&
                         $methods &&
@@ -227,7 +221,6 @@ trait Service {
                         );
                         $object->config('request', $request);
                         $result = $destination_controller::{$function}($object);
-                        ddd($result);
                         Event::trigger($object, 'app.run.route.controller', [
                             'destination' => $destination,
                             'response' => $result
