@@ -1,5 +1,3 @@
-{{d(config('volume'))}}
-{{dd(config('project.dir'))}}
 {{$flags = flags()}}
 {{$options = options()}}
 {{if(is.empty($options.target_dir))
