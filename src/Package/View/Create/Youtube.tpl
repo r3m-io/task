@@ -25,11 +25,11 @@ config('extension.log')
 }}
 {{/if}}
 {{if(!File::exist($options.target_dir))}}
-{{Dir::create($options.target_dir)}}
+{{Dir.create($options.target_dir)}}
 {{/if}}
-{{$status.dir = Dir::name($options.status.url)}}
+{{$status.dir = Dir.name($options.status.url)}}
 {{if(!File::exist($status.dir))}}
-{{Dir::create($status.dir)}}
+{{Dir/create($status.dir)}}
 {{/if}}
 {{if(is.empty($options.command))}}
 {{$options.command = [
