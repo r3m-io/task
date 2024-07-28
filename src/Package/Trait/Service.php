@@ -6,6 +6,7 @@ use R3m\Io\Config;
 
 use R3m\Io\Module\Core;
 use R3m\Io\Module\Data;
+use R3m\Io\Module\Data as Storage;
 use R3m\Io\Module\Destination;
 use R3m\Io\Module\Event;
 use R3m\Io\Module\File;
@@ -129,6 +130,8 @@ trait Service {
                 '.' .
                 $i .
                 $object->config('extension.json');
+            $children = [];
+            $pipes = [];
             if(array_key_exists($i, $chunks)){
                 $chunk = $chunks[$i];
                 $pid = pcntl_fork();
@@ -152,9 +155,49 @@ trait Service {
                     // Send serialized data to the parent
                     File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
 //                    fwrite($sockets[0], 1);
-                    fclose($sockets[0]);
+//                    fclose($sockets[0]);
                     exit(0);
                 }
+            }
+            foreach ($pipes as $i => $pipe) {
+                // Read serialized data from the pipe
+                $data = stream_get_contents($pipe);
+                fclose($pipe);
+                d($data);
+                /*
+                if($data !== '1'){
+                    continue;
+                }
+                $read = $object->data_read($url[$i]);
+                $array = [];
+                if($read){
+                    $array = $read->data();
+                }
+                $chunk = $chunks[$i];
+                if(is_array($array)){
+                    foreach($chunk as $nr => $record){
+                        if(!array_key_exists($nr, $array)){
+                            break;
+                        }
+                        if($array[$nr] === 1){
+                            if ($has_relation) {
+                                $record = $this->relation($record, $object_data, $role, $options);
+                                //collect relation mtime
+                            }
+                            $result[] = new Storage($record);
+                        }
+                    }
+                } else {
+                    ddd($data);
+                }
+                */
+            }
+            // Wait for all children to exit
+            foreach ($children as $child) {
+                pcntl_waitpid($child, $status);
+            }
+            foreach($url as $value){
+                echo $value . PHP_EOL;
             }
         }
     }

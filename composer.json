@@ -6,7 +6,8 @@
     "homepage": "https://r3m.io",
     "require" : {
         "r3m_io/framework": "*",
-        "guzzlehttp/guzzle": ">=7.8.1"
+        "guzzlehttp/guzzle": ">=7.8.1",
+        "ext-pcntl": "*"
     },
     "minimum-stability": "dev",
     "license" : "MIT",
