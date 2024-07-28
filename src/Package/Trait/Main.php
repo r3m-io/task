@@ -67,6 +67,7 @@ trait Main {
         }
         if(property_exists($options, 'options')){
             $options->options->request = $object->request();
+            ddd(App::options($object));
             $options->options->server = $object->server();
             $options->options->flags = $flags;
             $options->options->status  = $options->options->status ?? 'queue';
