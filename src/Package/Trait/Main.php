@@ -1,7 +1,7 @@
 <?php
 namespace Package\R3m\Io\Task\Trait;
 
-use GuzzleHttp\Exception\GuzzleException;
+use R3m\Io\App;
 use R3m\Io\Config;
 
 use R3m\Io\Module\Cli;
@@ -11,8 +11,10 @@ use R3m\Io\Node\Model\Node;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7;
+
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Exception\GuzzleException;
 
 use Exception;
 
