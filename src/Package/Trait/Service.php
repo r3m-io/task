@@ -113,6 +113,7 @@ trait Service {
             ]);
         }
         $name = Task::NODE;
+        $url = [];
         for ($i = 0; $i < $options->thread; $i++) {
             // Create a pipe
             $sockets = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP);
@@ -196,9 +197,9 @@ trait Service {
             foreach ($children as $child) {
                 pcntl_waitpid($child, $status);
             }
-            foreach($url as $value){
-                echo $value . PHP_EOL;
-            }
+        }
+        foreach($url as $value){
+            echo $value . PHP_EOL;
         }
     }
 
