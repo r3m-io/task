@@ -1,6 +1,6 @@
 {{$flags = flags()}}
 {{$options = options()}}
-{{if(is.empty($options.target_dir))
+{{if(is.empty($options.target_dir))}}
 {{$options.target_dir =
 config('project.dir.mount') +
 'Audio' +
