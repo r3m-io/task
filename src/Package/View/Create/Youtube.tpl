@@ -6,7 +6,7 @@
 {{$options.target_dir = '..'}}
 {{/if}}
 {{$options.command = [
-'cd ' +
+'cd ' + '...'
 ]}}
 {{$response = Package.R3m.Io.Task:Main:create($flags, $options)}}
 {{$response|object:'json'}}
