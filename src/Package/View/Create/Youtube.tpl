@@ -10,9 +10,6 @@ config('ds') +
 date('W-Y') +
 config('ds')}}
 {{/if}}
-{{d($options.status.url)}}
-{{dd(is.empty($options.status.url))}}
-
 {{if(is.empty($options.status.url))}}
 {{$options.status.url = config('ramdisk.url') +
 config('posix.id') +
