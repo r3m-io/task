@@ -24,7 +24,7 @@ uuid() +
 config('extension.log')
 }}
 {{/if}}
-{{if(!File::exist($options.target_dir))}}
+{{if(!file.exist($options.target_dir))}}
 {{dir.create($options.target_dir)}}
 {{/if}}
 {{$status.dir = dir.name($options.status.url)}}
