@@ -24,6 +24,11 @@ config('extension.log')
 {{/if}}
 {{if(!file.exist($options.target_dir))}}
 {{dir.create($options.target_dir)}}
+{{file.permission([
+'dir_audio' => dir.name($options.target_dir, 2),
+'dir_music' => dir.name($options.target_dir, 1),
+'dir_target_dir' => $options.target_dir,
+])}}
 {{/if}}
 {{$status.dir = dir.name($options.status.url)}}
 {{if(!file.exist($status.dir))}}
