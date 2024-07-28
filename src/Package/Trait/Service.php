@@ -86,6 +86,7 @@ trait Service {
      */
     private function parallel($chunks=[], $options){
         $object = $this->object();
+        /*
         if (
             property_exists($options, 'ramdisk_dir') &&
             $options->ramdisk_dir !== false
@@ -112,6 +113,7 @@ trait Service {
                 'ramdisk_dir_parallel' => $ramdisk_dir_parallel,
             ]);
         }
+        */
         $name = Task::NODE;
         $url = [];
         for ($i = 0; $i < $options->thread; $i++) {
@@ -124,6 +126,7 @@ trait Service {
                 'time' => time()
             ];
             $key = sha1(Core::object($key_options, Core::OBJECT_JSON));
+            /*
             $url[$i] = $ramdisk_dir_parallel .
                 $name .
                 '.' .
@@ -131,6 +134,7 @@ trait Service {
                 '.' .
                 $i .
                 $object->config('extension.json');
+            */
             $children = [];
             $pipes = [];
             if(array_key_exists($i, $chunks)){
@@ -162,44 +166,13 @@ trait Service {
             }
             foreach ($pipes as $i => $pipe) {
                 // Read serialized data from the pipe
-                $data = stream_get_contents($pipe);
+                $data = stream_get_contents($pipe); //should be 1
                 fclose($pipe);
-                d($data);
-                /*
-                if($data !== '1'){
-                    continue;
-                }
-                $read = $object->data_read($url[$i]);
-                $array = [];
-                if($read){
-                    $array = $read->data();
-                }
-                $chunk = $chunks[$i];
-                if(is_array($array)){
-                    foreach($chunk as $nr => $record){
-                        if(!array_key_exists($nr, $array)){
-                            break;
-                        }
-                        if($array[$nr] === 1){
-                            if ($has_relation) {
-                                $record = $this->relation($record, $object_data, $role, $options);
-                                //collect relation mtime
-                            }
-                            $result[] = new Storage($record);
-                        }
-                    }
-                } else {
-                    ddd($data);
-                }
-                */
             }
             // Wait for all children to exit
             foreach ($children as $child) {
                 pcntl_waitpid($child, $status);
             }
-        }
-        foreach($url as $value){
-            echo $value . PHP_EOL;
         }
     }
 
