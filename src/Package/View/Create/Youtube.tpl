@@ -28,7 +28,7 @@ config('extension.log')
 {{dir.create($options.target_dir)}}
 {{/if}}
 {{$status.dir = dir.name($options.status.url)}}
-{{if(!File::exist($status.dir))}}
+{{if(!file.exist($status.dir))}}
 {{dir.create($status.dir)}}
 {{/if}}
 {{if(is.empty($options.command))}}
