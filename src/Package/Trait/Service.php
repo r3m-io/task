@@ -149,12 +149,12 @@ trait Service {
                     // Child process
                     // Close the parent's socket
                     fclose($sockets[1]);
-                    $result = [];
+//                    $result = [];
                     foreach($chunk as $nr => $task) {
-                        $result[] = $this->run_task($task);
+                        $this->run_task($task);
                     }
                     // Send serialized data to the parent
-                    File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
+//                    File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
                     fwrite($sockets[0], 1);
 //                    fclose($sockets[0]);
                     exit(0);
@@ -211,7 +211,6 @@ trait Service {
         $data = new Data($task);
         $node = new Node($object);
         $patch = new Data();
-
         $patch->set('uuid', $data->get('uuid'));
         $patch->set('options.status', Task::OPTIONS_STATUS_RUNNING);
         $node->patch(Task::NODE, $node->role_system(), $patch->data());
@@ -234,7 +233,6 @@ trait Service {
             if(is_array($controller)){
                 foreach($controller as $execute){
                     App::contentType($object);
-
                     $route = (object) [
                         'controller' => $execute
                     ];
