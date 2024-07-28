@@ -68,8 +68,11 @@ trait Main {
             }
         }
         if(property_exists($options, 'options')){
-            $options->options->request = $object->request();
-            ddd(App::options($object));
+            if(property_exists($options, 'request')){
+                $options->options->request = Core::object_merge($object->request(), $options->request);
+            } else {
+                $options->options->request = $object->request();
+            }
             $options->options->server = $object->server();
             $options->options->flags = $flags;
             $options->options->status  = $options->options->status ?? 'queue';
