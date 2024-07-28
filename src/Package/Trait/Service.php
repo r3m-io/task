@@ -154,7 +154,7 @@ trait Service {
                     }
                     // Send serialized data to the parent
                     File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
-//                    fwrite($sockets[0], 1);
+                    fwrite($sockets[0], 1);
 //                    fclose($sockets[0]);
                     exit(0);
                 }
