@@ -10,7 +10,7 @@ config('ds') +
 date('W-Y') +
 config('ds')}}
 {{/if}}
-{{if(is.empty($options.status.url))}}
+{{if(is.empty($options.request.status.url))}}
 {{$options.request.status.url = config('ramdisk.url') +
 config('posix.id') +
 config('ds') +
@@ -21,6 +21,9 @@ config('ds') +
 uuid() +
 config('extension.log')
 }}
+{{/if}}
+{{if(is.empty($options.request.status.controller))}}
+{{$options.request.status.controller = 'Package:R3m:Io:Task:Controller:Status:run'}}
 {{/if}}
 {{if(!file.exist($options.request.target_dir))}}
 {{dir.create($options.request.target_dir)}}
