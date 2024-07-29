@@ -173,9 +173,7 @@ trait Service {
                                  * the update of the task object with the status parsed from the log file
                                  * so percentage comes available among other variables
                                  */
-                                $destination = new Destination();
-                                $destination->set('controller', $record->get('options.request.status.controller'));
-                                $route = Route::controller($destination);
+                                $route = Route::controller($record->get('options.request.status.controller'));
                                 ddd($route);
                             }
                         }
