@@ -179,12 +179,10 @@ trait Service {
                                 $route = Route::controller($route);
 
                                 $status = Core::deep_clone($object);
-                                ddd($status);
-
-
+                                $status->request($record->get('options.request'));
                                 $result = $route->controller::{$route->function}($object);
 
-                                ddd($route);
+                                ddd($result);
                             }
                         }
 
