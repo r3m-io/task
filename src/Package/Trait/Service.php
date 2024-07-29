@@ -182,7 +182,8 @@ trait Service {
                                 $status->request($record->get('options.request'));
                                 $result = $route->controller::{$route->function}($object);
 
-                                ddd($result);
+                                d($result);
+                                exit();
                             }
                         }
 
