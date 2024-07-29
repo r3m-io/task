@@ -154,7 +154,18 @@ trait Service {
                     // Close the parent's socket
                     fclose($sockets[1]);
 //                    $result = [];
+                    $status = [];
                     foreach($chunk as $nr => $task) {
+                        ddd($task);
+                        $pid = pcntl_fork();
+                        if ($pid == -1) {
+                            die("Could not fork for child $i");
+                        } elseif ($pid) {
+                            // Parent process
+                            $status = $pid;
+                        } else {
+                            // Child process
+                        }
                         $this->run_task($task);
                     }
                     // Send serialized data to the parent
@@ -163,6 +174,7 @@ trait Service {
 //                    fclose($sockets[0]);
                     exit(0);
                 }
+
             }
             foreach ($pipes as $i => $pipe) {
                 // Read serialized data from the pipe
