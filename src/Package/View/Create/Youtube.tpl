@@ -35,6 +35,7 @@ config('extension.log')
 {{dir.create($status.dir)}}
 {{/if}}
 {{if(is.empty($options.options.command))}}
+{{$options.request.url = $options.url}}
 {{$options.options.command = [
 'cd ' + $options.target_dir + ' && yt-dlp -x --restrict-filenames --audio-format mp3 --prefer-ffmpeg ' + $options.url + '  2>&1 | tee -a ' + $options.request.status.url
 ]}}
