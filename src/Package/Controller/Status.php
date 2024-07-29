@@ -34,12 +34,21 @@ class Status extends Controller {
             }
         }
         if($status_url){
-            $read = File::read($status_url);
-            if(str_contains($read, 'yt-dlp: not found')){
-                echo 'Please install the yt-dlp package' . PHP_EOL;
-                return;
+            $timer = 0;
+            while(true){
+                $read = File::read($status_url);
+                if(str_contains($read, 'yt-dlp: not found')){
+                    echo 'Please install the yt-dlp package' . PHP_EOL;
+                    return;
+                }
+                d($read);
+                sleep(1);
+                if($timer > 10){
+                    echo 'Timeout' . PHP_EOL;
+                    break;
+                }
             }
-            ddd($read);
+
         }
     }
 }
