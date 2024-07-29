@@ -23,7 +23,7 @@ config('extension.log')
 }}
 {{/if}}
 {{if(is.empty($options.request.status.controller))}}
-{{$options.request.status.controller = 'Package:R3m:Io:Task:Controller:Status:run'}}
+{{$options.request.status.controller = 'Package:R3m:Io:Task:Controller:Status:youtube'}}
 {{/if}}
 {{if(!file.exist($options.request.target_dir))}}
 {{dir.create($options.request.target_dir)}}
