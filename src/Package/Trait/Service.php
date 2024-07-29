@@ -83,6 +83,7 @@ trait Service {
     /**
      * @throws ObjectException
      * @throws FileWriteException
+     * @throws Exception
      */
     private function parallel($chunks=[], $options){
         $object = $this->object();
@@ -156,16 +157,29 @@ trait Service {
 //                    $result = [];
                     $status = false;
                     foreach($chunk as $nr => $task) {
-                        ddd($task);
-                        $pid = pcntl_fork();
-                        if ($pid == -1) {
-                            die("Could not fork for child $i");
-                        } elseif ($pid) {
-                            // Parent process
-                            $status = $pid;
-                        } else {
-                            // Child process
+                        $record = new Data($task);
+                        if($record->has('options.request.status.controller')){
+                            $pid = pcntl_fork();
+                            if ($pid == -1) {
+                                die("Could not fork for child $i");
+                            } elseif ($pid) {
+                                // Parent process
+                                $status = $pid;
+                            } else {
+                                // Child process
+                                /**
+                                 * in case of Youtube, the following is happening:
+                                 * the options.request.status.controller will be executed and handle:
+                                 * the update of the task object with the status parsed from the log file
+                                 * so percentage comes available among other variables
+                                 */
+                                $destination = new Destination();
+                                $destination->set('controller', $record->get('options.request.status.controller'));
+                                $route = Route::controller($destination);
+                                ddd($route);
+                            }
                         }
+
                         $this->run_task($task);
                     }
                     // Send serialized data to the parent
