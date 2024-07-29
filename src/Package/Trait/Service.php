@@ -154,7 +154,7 @@ trait Service {
                     // Close the parent's socket
                     fclose($sockets[1]);
 //                    $result = [];
-                    $status = [];
+                    $status = false;
                     foreach($chunk as $nr => $task) {
                         ddd($task);
                         $pid = pcntl_fork();
