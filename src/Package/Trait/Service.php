@@ -177,6 +177,13 @@ trait Service {
                                     'controller' => $record->get('options.request.status.controller')
                                 ];
                                 $route = Route::controller($route);
+
+                                $status = Core::deep_clone($object);
+                                ddd($status);
+
+
+                                $result = $route->controller::{$route->function}($object);
+
                                 ddd($route);
                             }
                         }
