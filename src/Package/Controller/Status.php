@@ -128,8 +128,12 @@ class Status extends Controller {
                         $tmp = explode('.', $basename);
                         $extension = array_pop($tmp);
                         $basename = implode('.', $tmp);
-                        $target = $object->request('target_dir') . $basename . $object->config('extension.mp3');
+                        $target = $object->request('target_dir') .
+                            $basename .
+                            $object->config('extension.mp3')
+                        ;
                         $size = 0;
+                        clearstatcache();
                         if (File::exist($target)) {
                             $size = File::size($target);
                             $size_format = File::size_format($size);
