@@ -185,6 +185,7 @@ class Status extends Controller {
                         ];
                         $previous_size = $size;
                         d($progress);
+                        d($object->request('task.uuid'));
                         //progress needs to be patched in the task
                     }
                 }
