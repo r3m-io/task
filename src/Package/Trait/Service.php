@@ -169,6 +169,7 @@ trait Service {
                                 // Parent process
                                 $status_pid = $pid;
                             } else {
+                                d('child process');
                                 // Child process
                                 /**
                                  * in case of Youtube, the following is happening:
@@ -182,7 +183,12 @@ trait Service {
                                 $route = Route::controller($route);
 
                                 $status_object = Core::deep_clone($object);
-//                                $status->request($record->get('options.request'));
+                                $status_object->request(
+                                    Core::object_merge(
+                                        $status_object->request(),
+                                        $record->get('options.request')
+                                    )
+                                );
                                 $status_object->request('task', $task);
                                 $route->controller::{$route->function}($status_object);
                                 exit(0);
