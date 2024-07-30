@@ -95,6 +95,10 @@
                 "multiple": false
             },
             {
+                "name": "progress",
+                "type": "dynamic"
+            },
+            {
                 "name": "#class",
                 "type": "string"
             }

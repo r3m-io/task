@@ -9,9 +9,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -53,9 +58,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -97,9 +107,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -141,9 +156,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -185,9 +205,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -229,9 +254,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -273,9 +303,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [
@@ -317,9 +352,14 @@
                         "#class",
                         "description",
                         "options",
-                        "is"
+                        "is",
+                        "progress"
                     ],
                     "object": {
+                        "progress": {
+                            "multiple": false,
+                            "dynamic": true
+                        },
                         "is": {
                             "multiple": false,
                             "output": [

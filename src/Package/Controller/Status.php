@@ -8,6 +8,7 @@ use R3m\Io\Module\Controller;
 use R3m\Io\Module\File;
 
 use Exception;
+use R3m\Io\Node\Model\Node;
 
 class Status extends Controller {
     const DIR = __DIR__ . '/';
@@ -120,8 +121,15 @@ class Status extends Controller {
                                 'eta' => $eta,
                                 'read' => $read_line
                             ];
-                            d($progress);
-                            //progress needs to be added to the task through a patch
+                            $node = new Node($object);
+                            $node->patch(
+                                'Task',
+                                $node->role_system(),
+                                [
+                                    'uuid' => $object->request('task.uuid'),
+                                    'progress' => $progress
+                                ]
+                            );
                         }
                     }
                     $explode =  explode('[ExtractAudio]', $read_line, 2);
@@ -188,9 +196,16 @@ class Status extends Controller {
                             'read' => $read_line
                         ];
                         $previous_size = $size;
-                        d($progress);
-                        d($object->request('task.uuid'));
                         //progress needs to be patched in the task
+                        $node = new Node($object);
+                        $node->patch(
+                            'Task',
+                            $node->role_system(),
+                            [
+                                'uuid' => $object->request('task.uuid'),
+                                'progress' => $progress
+                            ]
+                        );
                     }
                 }
                 sleep(1);
