@@ -140,7 +140,6 @@ class Status extends Controller {
                             $size = File::size($target);
                             $size_format = File::size_format($size);
                         }
-//                        $read= File::tail($status_url);
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
