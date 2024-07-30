@@ -106,19 +106,23 @@ class Status extends Controller {
                                 }
                             }
                         }
-                        $progress = (object) [
-                            'percentage' => $percentage,
-                            'download' => $download,
-                            'download_format' => $download_format,
-                            'size' => $size,
-                            'size_format' => $size_format,
-                            'speed' => $speed,
-                            'speed_format' => $speed_format,
-                            'eta' => $eta,
-                            'read' => $read_line
-                        ];
-                        d($progress);
-                        //progress needs to be added to the task through a patch
+                        if(str_contains($read_line, 'has already been downloaded')){
+                            //perhaps update the task to done
+                        } else {
+                            $progress = (object) [
+                                'percentage' => $percentage,
+                                'download' => $download,
+                                'download_format' => $download_format,
+                                'size' => $size,
+                                'size_format' => $size_format,
+                                'speed' => $speed,
+                                'speed_format' => $speed_format,
+                                'eta' => $eta,
+                                'read' => $read_line
+                            ];
+                            d($progress);
+                            //progress needs to be added to the task through a patch
+                        }
                     }
                     $explode =  explode('[ExtractAudio]', $read_line, 2);
                     if(array_key_exists(1, $explode)) {
