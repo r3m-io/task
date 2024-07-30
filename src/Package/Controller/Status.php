@@ -44,8 +44,7 @@ class Status extends Controller {
                     $timer = 0;
                 }
                 if(str_contains($read, 'yt-dlp: not found')){
-                    echo 'Please install the yt-dlp package' . PHP_EOL;
-                    return;
+                    throw new Exception('Please install the yt-dlp package');
                 }
                 $content = explode(PHP_EOL, $read);
                 d($content);
