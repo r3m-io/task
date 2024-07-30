@@ -152,6 +152,8 @@ class Status extends Controller {
                         }
                         $speed = $size - $previous_size;
                         $speed_format = File::size_format($speed) . '/s';
+                        $eta = ($size_original - $size) / $speed;
+                        $eta_format = File::time_format($eta);
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
@@ -163,6 +165,8 @@ class Status extends Controller {
                             'destination_percentage' => $destination_percentage,
                             'speed' => $speed,
                             'speed_format' => $speed_format,
+                            'eta' => $eta,
+                            'eta_format' => $eta_format,
                             'extension' => $extension,
                             'read' => $read_line
                         ];
