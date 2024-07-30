@@ -159,7 +159,7 @@ class Status extends Controller {
                                 'eta' => $eta,
                                 'eta_format' => File::time_format($eta),
                                 'duration' => $duration,
-                                'duration_format' => File::time_format($duration, 'Elapsed: '),
+                                'duration_format' => File::time_format($duration, File::ELAPSED),
                                 'read' => $read_line
                             ];
                             $node = new Node($object);
