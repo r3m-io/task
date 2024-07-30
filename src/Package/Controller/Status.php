@@ -47,7 +47,8 @@ class Status extends Controller {
                     echo 'Please install the yt-dlp package' . PHP_EOL;
                     return;
                 }
-                d($read);
+                $content = explode(PHP_EOL, $read);
+                d($content);
                 sleep(1);
                 $previous = $read;
                 if($timer > 10){
