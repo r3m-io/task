@@ -132,6 +132,8 @@ class Status extends Controller {
                             $basename .
                             $object->config('extension.mp3')
                         ;
+                        $size_original = $size;
+                        $size_original_format = File::size_format($size_original);
                         $size = 0;
                         clearstatcache();
                         if (File::exist($target)) {
@@ -143,6 +145,8 @@ class Status extends Controller {
                             'percentage' => 100,
                             'is_converting' => true,
                             'target' => $target,
+                            'size' => $size_original,
+                            'size_format' => $size_original_format,
                             'destination_size' => $size,
                             'destination_size_format' => $size_format,
                             'extension' => $extension,
