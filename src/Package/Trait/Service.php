@@ -140,6 +140,8 @@ trait Service {
             */
             $children = [];
 //            $pipes = [];
+            $status = false;
+            $status_object = null;
             if(array_key_exists($i, $chunks)){
                 $chunk = $chunks[$i];
                 $pid = pcntl_fork();
@@ -157,7 +159,6 @@ trait Service {
                     // Close the parent's socket
 //                    fclose($sockets[1]);
 //                    $result = [];
-                    $status = false;
                     foreach($chunk as $nr => $task) {
                         $record = new Data($task);
                         if($record->has('options.request.status.controller')){
@@ -180,14 +181,13 @@ trait Service {
                                 ];
                                 $route = Route::controller($route);
 
-                                $status = Core::deep_clone($object);
+                                $status_object = Core::deep_clone($object);
 //                                $status->request($record->get('options.request'));
-                                $status->request('task', $task);
-                                $route->controller::{$route->function}($status);
-                                exit();
+                                $status_object->request('task', $task);
+                                $route->controller::{$route->function}($status_object);
+                                exit(0);
                             }
                         }
-
                         $this->run_task($task);
                     }
                     // Send serialized data to the parent
@@ -205,6 +205,7 @@ trait Service {
                 fclose($pipe);
             }
             */
+            pcntl_waitpid($status, $status);
             // Wait for all children to exit
             foreach ($children as $child) {
                 pcntl_waitpid($child, $status);
