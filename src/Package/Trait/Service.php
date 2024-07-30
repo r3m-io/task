@@ -183,9 +183,7 @@ trait Service {
                                 $status = Core::deep_clone($object);
 //                                $status->request($record->get('options.request'));
                                 $status->request('task', $task);
-                                $result = $route->controller::{$route->function}($status);
-
-                                d($result);
+                                $route->controller::{$route->function}($status);
                                 exit();
                             }
                         }

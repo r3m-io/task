@@ -122,7 +122,7 @@ class Status extends Controller {
                                 'read' => $read_line
                             ];
                             $node = new Node($object);
-                            $node->patch(
+                            $patch = $node->patch(
                                 'Task',
                                 $node->role_system(),
                                 [
@@ -130,6 +130,7 @@ class Status extends Controller {
                                     'progress' => $progress
                                 ]
                             );
+                            d($patch);
                         }
                     }
                     $explode =  explode('[ExtractAudio]', $read_line, 2);
@@ -201,7 +202,7 @@ class Status extends Controller {
                         $previous_size = $size;
                         //progress needs to be patched in the task
                         $node = new Node($object);
-                        $node->patch(
+                        $patch = $node->patch(
                             'Task',
                             $node->role_system(),
                             [
@@ -209,6 +210,7 @@ class Status extends Controller {
                                 'progress' => $progress
                             ]
                         );
+                        d($patch);
                     }
                 }
                 sleep(1);
