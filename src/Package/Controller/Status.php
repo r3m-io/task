@@ -162,7 +162,8 @@ class Status extends Controller {
                                 $eta = ($size_original - $size) / (array_sum($avg_speed) / $count);
                                 $eta_format = File::time_format($eta);
                             }
-                            if($count > 10){
+                            if($count > 100){
+                                //remember 100 steps to get an average
                                 array_shift($avg_speed);
                             }
                         }
