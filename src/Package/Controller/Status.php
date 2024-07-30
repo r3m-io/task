@@ -39,6 +39,7 @@ class Status extends Controller {
             $release_timer = false;
             $last_known_size = 0;
             $previous_size = 0;
+            $avg_speed = 0;
             while(true){
                 $read = File::read($status_url);
                 if(
@@ -151,11 +152,19 @@ class Status extends Controller {
                         }
                         $speed = $size - $previous_size;
                         $speed_format = File::size_format($speed) . '/s';
+                        $avg_speed[] = $speed;
                         $eta = 'N/A';
                         $eta_format = 'N/A';
                         if ($speed > 0) {
-                            $eta = ($size_original - $size) / $speed;
-                            $eta_format = File::time_format($eta);
+                            $count = count($avg_speed);
+                            $avg = array_sum($avg_speed) / $count;
+                            if($avg > 0){
+                                $eta = ($size_original - $size) / (array_sum($avg_speed) / $count);
+                                $eta_format = File::time_format($eta);
+                            }
+                            if($count > 10){
+                                array_shift($avg_speed);
+                            }
                         }
                         $progress = (object)[
                             'percentage' => 100,
