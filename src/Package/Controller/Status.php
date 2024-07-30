@@ -135,8 +135,7 @@ class Status extends Controller {
                         $basename = implode('.', $tmp);
                         $target = $object->request('target_dir') .
                             $basename .
-                            $object->config('extension.mp3')
-                        ;
+                            $object->config('extension.mp3');
                         $size_original = $last_known_size;
                         $size_original_format = File::size_format($size_original);
                         $size = 0;
@@ -145,15 +144,19 @@ class Status extends Controller {
                             $size = File::size($target);
                             $size_format = File::size_format($size);
                         }
-                        if($size_original > 0){
+                        if ($size_original > 0) {
                             $destination_percentage = round(($size / $size_original) * 100, 2);
                         } else {
                             $destination_percentage = 0;
                         }
                         $speed = $size - $previous_size;
                         $speed_format = File::size_format($speed) . '/s';
-                        $eta = ($size_original - $size) / $speed;
-                        $eta_format = File::time_format($eta);
+                        $eta = 'N/A';
+                        $eta_format = 'N/A';
+                        if ($speed > 0) {
+                            $eta = ($size_original - $size) / $speed;
+                            $eta_format = File::time_format($eta);
+                        }
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
