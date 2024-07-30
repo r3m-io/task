@@ -157,6 +157,7 @@ class Status extends Controller {
                                 'speed_format' => $speed_format,
                                 'eta' => $eta,
                                 'eta_format' => File::time_format($eta),
+                                'duration' => round(microtime(true) - $object->config('time.start'), 2),
                                 'read' => $read_line
                             ];
                             $node = new Node($object);
@@ -226,6 +227,7 @@ class Status extends Controller {
                             'target' => $target,
                             'size' => $size_original,
                             'size_format' => $size_original_format,
+                            'duration' => round(microtime(true) - $object->config('time.start'), 2),
                             'destination_size' => $size,
                             'destination_size_format' => $size_format,
                             'destination_percentage' => $destination_percentage,
