@@ -119,10 +119,12 @@ trait Service {
         $url = [];
         for ($i = 0; $i < $options->thread; $i++) {
             // Create a pipe
-            $sockets = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP);
+//            $sockets = stream_socket_pair(STREAM_PF_UNIX, STREAM_SOCK_STREAM, STREAM_IPPROTO_IP);
+            /*
             if ($sockets === false) {
                 die("Unable to create socket pair for child $i");
             }
+            */
             $key_options = [
                 'time' => time()
             ];
@@ -137,7 +139,7 @@ trait Service {
                 $object->config('extension.json');
             */
             $children = [];
-            $pipes = [];
+//            $pipes = [];
             if(array_key_exists($i, $chunks)){
                 $chunk = $chunks[$i];
                 $pid = pcntl_fork();
@@ -146,14 +148,14 @@ trait Service {
                 } elseif ($pid) {
                     // Parent process
                     // Close the child's socket
-                    fclose($sockets[0]);
+//                    fclose($sockets[0]);
                     // Store the parent socket and child PID
-                    $pipes[$i] = $sockets[1];
+//                    $pipes[$i] = $sockets[1];
                     $children[$i] = $pid;
                 } else {
                     // Child process
                     // Close the parent's socket
-                    fclose($sockets[1]);
+//                    fclose($sockets[1]);
 //                    $result = [];
                     $status = false;
                     foreach($chunk as $nr => $task) {
@@ -192,17 +194,19 @@ trait Service {
                     }
                     // Send serialized data to the parent
 //                    File::write($url[$i], Core::object($result, Core::OBJECT_JSON_LINE));
-                    fwrite($sockets[0], 1);
+//                    fwrite($sockets[0], 1);
 //                    fclose($sockets[0]);
                     exit(0);
                 }
 
             }
+            /*
             foreach ($pipes as $i => $pipe) {
                 // Read serialized data from the pipe
                 $data = stream_get_contents($pipe); //should be 1
                 fclose($pipe);
             }
+            */
             // Wait for all children to exit
             foreach ($children as $child) {
                 pcntl_waitpid($child, $status);
