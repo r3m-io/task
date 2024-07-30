@@ -140,7 +140,7 @@ trait Service {
             */
             $children = [];
 //            $pipes = [];
-            $status = false;
+            $status_pid = false;
             $status_object = null;
             if(array_key_exists($i, $chunks)){
                 $chunk = $chunks[$i];
@@ -167,7 +167,7 @@ trait Service {
                                 die("Could not fork for child $i");
                             } elseif ($pid) {
                                 // Parent process
-                                $status = $pid;
+                                $status_pid = $pid;
                             } else {
                                 // Child process
                                 /**
@@ -205,7 +205,7 @@ trait Service {
                 fclose($pipe);
             }
             */
-            pcntl_waitpid($status, $status);
+            pcntl_waitpid($status_pid, $status);
             // Wait for all children to exit
             foreach ($children as $child) {
                 pcntl_waitpid($child, $status);
