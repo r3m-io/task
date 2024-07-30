@@ -159,6 +159,9 @@ class Status extends Controller {
                         }
                         if ($size_original > 0) {
                             $destination_percentage = round(($size / $size_original) * 100, 2);
+                            if($destination_percentage > 100){
+                                $destination_percentage = 100;
+                            }
                         } else {
                             $destination_percentage = 0;
                         }
