@@ -51,7 +51,7 @@ class Status extends Controller {
                 d($content);
                 sleep(1);
                 $previous = $read;
-                if($timer > 10){
+                if($timer > 200){
                     echo 'Timeout' . PHP_EOL;
                     break;
                 }
