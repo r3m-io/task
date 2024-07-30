@@ -37,6 +37,7 @@ class Status extends Controller {
             $read = false;
             $previous = null;
             $release_timer = false;
+            $last_known_size = 0;
             while(true){
                 $read = File::read($status_url);
                 if(
@@ -82,6 +83,9 @@ class Status extends Controller {
                                     if(array_key_exists(0, $explode)){
                                         $size = trim($explode[0]);
                                         $size = File::size_calculation($size);
+                                        if($size > $last_known_size){
+                                            $last_known_size = $size;
+                                        }
                                         $size_format = File::size_format($size);
                                         $download = $size * ($percentage / 100);
                                         $download_format = File::size_format($download);
@@ -132,7 +136,7 @@ class Status extends Controller {
                             $basename .
                             $object->config('extension.mp3')
                         ;
-                        $size_original = $size;
+                        $size_original = $last_known_size;
                         $size_original_format = File::size_format($size_original);
                         $size = 0;
                         clearstatcache();
