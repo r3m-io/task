@@ -39,7 +39,7 @@ class Status extends Controller {
             $release_timer = false;
             $last_known_size = 0;
             $previous_size = 0;
-            $avg_speed = 0;
+            $avg_speed = [];
             while(true){
                 $read = File::read($status_url);
                 if(
