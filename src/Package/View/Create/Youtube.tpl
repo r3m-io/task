@@ -47,7 +47,6 @@ $options.request.target_dir +
 $options.url +
 '  2>&1 | tee -a ' +
 $options.request.status.url,
-' && ' +
 'echo "[finished]" >> ' + $options.request.status.url,
 ]}}
 {{/if}}
