@@ -144,7 +144,11 @@ class Status extends Controller {
                             $size = File::size($target);
                             $size_format = File::size_format($size);
                         }
-                        $destination_percentage = round(($size / $size_original) * 100, 2);
+                        if($size_original > 0){
+                            $destination_percentage = round(($size / $size_original) * 100, 2);
+                        } else {
+                            $destination_percentage = 0;
+                        }
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
