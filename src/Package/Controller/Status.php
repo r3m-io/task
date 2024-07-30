@@ -38,6 +38,7 @@ class Status extends Controller {
             $previous = null;
             $release_timer = false;
             $last_known_size = 0;
+            $previous_size = 0;
             while(true){
                 $read = File::read($status_url);
                 if(
@@ -149,6 +150,8 @@ class Status extends Controller {
                         } else {
                             $destination_percentage = 0;
                         }
+                        $speed = $size - $previous_size;
+                        $speed_format = File::size_format($speed) . '/s';
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
@@ -158,9 +161,12 @@ class Status extends Controller {
                             'destination_size' => $size,
                             'destination_size_format' => $size_format,
                             'destination_percentage' => $destination_percentage,
+                            'speed' => $speed,
+                            'speed_format' => $speed_format,
                             'extension' => $extension,
                             'read' => $read_line
                         ];
+                        $previous_size = $size;
                         d($progress);
                         //progress needs to be patched in the task
                     }
