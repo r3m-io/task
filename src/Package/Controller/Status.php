@@ -231,7 +231,7 @@ class Status extends Controller {
                             'size' => $size_original,
                             'size_format' => $size_original_format,
                             'duration' => $duration,
-                            'duration_format' => File::time_format($duration, 'Elapsed: '),
+                            'duration_format' => File::time_format($duration, File::ELAPSED),
                             'destination_size' => $size,
                             'destination_size_format' => $size_format,
                             'destination_percentage' => $destination_percentage,
