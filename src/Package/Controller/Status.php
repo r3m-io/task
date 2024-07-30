@@ -7,8 +7,11 @@ use R3m\Io\App;
 use R3m\Io\Module\Controller;
 use R3m\Io\Module\File;
 
-use Exception;
 use R3m\Io\Node\Model\Node;
+
+use Package\R3m\Io\Task\Service\Task;
+
+use Exception;
 
 class Status extends Controller {
     const DIR = __DIR__ . '/';
@@ -102,13 +105,46 @@ class Status extends Controller {
                                         }
                                         if(array_key_exists(1, $explode)) {
                                             $eta = trim($explode[1]);
-                                            ddd($eta);
+                                            $eta = explode(':', $eta);
+                                            $days = 0;
+                                            $hours = 0;
+                                            $minutes = 0;
+                                            $seconds = 0;
+                                            if(array_key_exists(3, $eta)){
+                                                $days = (int) $eta[0];
+                                                $hours = (int) $eta[1];
+                                                $minutes = (int) $eta[2];
+                                                $seconds = (int) $eta[3];
+                                            }
+                                            if(array_key_exists(2, $eta)){
+                                                $hours = (int) $eta[0];
+                                                $minutes = (int) $eta[1];
+                                                $seconds = (int) $eta[2];
+                                            }
+                                            elseif(array_key_exists(1, $eta)){
+                                                $minutes = (int) $eta[0];
+                                                $seconds = (int) $eta[1];
+                                            }
+                                            elseif(array_key_exists(0, $eta)){
+                                                $seconds = (int) $eta[0];
+                                            }
+                                            $eta = ($days * (3600 * 24)) + $hours * 3600 + $minutes * 60 + $seconds;
                                         }
                                     }
                                 }
                             }
                         }
                         if(str_contains($read_line, 'has already been downloaded')){
+                            $node = new Node($object);
+                            $patch = $node->patch(
+                                'Task',
+                                $node->role_system(),
+                                [
+                                    'uuid' => $object->request('task.uuid'),
+                                    'status' => Task::OPTIONS_STATUS_DONE
+                                ]
+                            );
+                            break;
                             //perhaps update the task to done
                         } else {
                             $progress = (object) [
@@ -120,6 +156,7 @@ class Status extends Controller {
                                 'speed' => $speed,
                                 'speed_format' => $speed_format,
                                 'eta' => $eta,
+                                'eta_format' => File::time_format($eta),
                                 'read' => $read_line
                             ];
                             $node = new Node($object);
@@ -131,7 +168,6 @@ class Status extends Controller {
                                     'progress' => $progress
                                 ]
                             );
-                            d($patch);
                         }
                     }
                     $explode =  explode('[ExtractAudio]', $read_line, 2);
@@ -211,7 +247,6 @@ class Status extends Controller {
                                 'progress' => $progress
                             ]
                         );
-                        d($patch);
                     }
                 }
                 sleep(1);
