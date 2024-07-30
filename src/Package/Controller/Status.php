@@ -102,6 +102,7 @@ class Status extends Controller {
                                         }
                                         if(array_key_exists(1, $explode)) {
                                             $eta = trim($explode[1]);
+                                            ddd($eta);
                                         }
                                     }
                                 }
