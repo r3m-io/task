@@ -147,6 +147,7 @@ class Status extends Controller {
                             break;
                             //perhaps update the task to done
                         } else {
+                            $duration = round(microtime(true) - $object->config('time.start'), 2);
                             $progress = (object) [
                                 'percentage' => $percentage,
                                 'download' => $download,
@@ -157,7 +158,8 @@ class Status extends Controller {
                                 'speed_format' => $speed_format,
                                 'eta' => $eta,
                                 'eta_format' => File::time_format($eta),
-                                'duration' => round(microtime(true) - $object->config('time.start'), 2),
+                                'duration' => $duration,
+                                'duration_format' => File::time_format($duration, 'Elapsed: '),
                                 'read' => $read_line
                             ];
                             $node = new Node($object);
@@ -221,13 +223,15 @@ class Status extends Controller {
                                 array_shift($avg_speed);
                             }
                         }
+                        $duration = round(microtime(true) - $object->config('time.start'), 2);
                         $progress = (object)[
                             'percentage' => 100,
                             'is_converting' => true,
                             'target' => $target,
                             'size' => $size_original,
                             'size_format' => $size_original_format,
-                            'duration' => round(microtime(true) - $object->config('time.start'), 2),
+                            'duration' => $duration,
+                            'duration_format' => File::time_format($duration, 'Elapsed: '),
                             'destination_size' => $size,
                             'destination_size_format' => $size_format,
                             'destination_percentage' => $destination_percentage,
